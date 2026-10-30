@@ -1,4 +1,4 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class Form1
     Inherits System.Windows.Forms.Form
 
@@ -43,6 +43,8 @@ Partial Class Form1
         btnDelete = New Button()
         
         ' Scientific buttons
+        btnDegRad = New Button()
+        lblMode = New Label()
         btnOpenBracket = New Button()
         btnCloseBracket = New Button()
         btnSin = New Button()
@@ -59,6 +61,31 @@ Partial Class Form1
         txtDisplay = New RichTextBox()
         SuspendLayout()
         
+        ' 
+        ' lblMode
+        ' 
+        lblMode.AutoSize = True
+        lblMode.Font = New Font("Segoe UI", 11.0F, FontStyle.Bold)
+        lblMode.ForeColor = Color.FromArgb(0, 150, 255)
+        lblMode.Location = New Point(48, 18)
+        lblMode.Name = "lblMode"
+        lblMode.Size = New Size(50, 25)
+        lblMode.TabIndex = 32
+        lblMode.Text = "DEG"
+        ' 
+        ' btnDegRad
+        ' 
+        btnDegRad.BackColor = Color.FromArgb(60, 60, 60)
+        btnDegRad.FlatAppearance.BorderSize = 0
+        btnDegRad.FlatStyle = FlatStyle.Flat
+        btnDegRad.Font = New Font("Segoe UI Semibold", 10.0F, FontStyle.Bold)
+        btnDegRad.ForeColor = Color.White
+        btnDegRad.Location = New Point(110, 12)
+        btnDegRad.Name = "btnDegRad"
+        btnDegRad.Size = New Size(100, 32)
+        btnDegRad.TabIndex = 33
+        btnDegRad.Text = "DEG / RAD"
+        btnDegRad.UseVisualStyleBackColor = False
         ' 
         ' txtDisplay
         ' 
@@ -473,6 +500,8 @@ Partial Class Form1
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.FromArgb(28, 28, 28)
         ClientSize = New Size(950, 600)
+        Controls.Add(lblMode)
+        Controls.Add(btnDegRad)
         Controls.Add(txtDisplay)
         Controls.Add(btnOpenBracket)
         Controls.Add(btnCloseBracket)
@@ -543,5 +572,7 @@ Partial Class Form1
     Friend WithEvents btnLn As Button
     Friend WithEvents btnPi As Button
     Friend WithEvents btnE As Button
+    Friend WithEvents btnDegRad As Button
+    Friend WithEvents lblMode As Label
 
 End Class

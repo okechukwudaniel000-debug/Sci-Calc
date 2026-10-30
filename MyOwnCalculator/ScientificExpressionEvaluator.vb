@@ -2,20 +2,31 @@ Imports System.Globalization
 Imports System.Text.RegularExpressions
 
 ''' <summary>
+''' Specifies the angle mode for trigonometric functions.
+''' </summary>
+Public Enum AngleMode
+    Degrees
+    Radians
+End Enum
+
+''' <summary>
 ''' High-precision, recursive-descent scientific mathematical expression evaluator.
 ''' Supports standard arithmetic, parentheses, exponentiation (^), unary operators,
-''' functions (sin, cos, tan, sqrt, log10, ln), and constants (pi, e).
+''' functions (sin, cos, tan, asin, acos, atan, sqrt, log10, ln), and constants (pi, e).
+''' Also supports selectable AngleMode (Degrees or Radians).
 ''' </summary>
 Public Class ScientificExpressionEvaluator
 
     Private ReadOnly _expression As String
     Private _pos As Integer = 0
     Private _currentChar As Char = ControlChars.NullChar
+    Private ReadOnly _angleMode As AngleMode
 
-    Public Sub New(expression As String)
+    Public Sub New(expression As String, Optional mode As AngleMode = AngleMode.Degrees)
         If String.IsNullOrWhiteSpace(expression) Then
             Throw New ArgumentException("Expression cannot be empty.")
         End If
+        _angleMode = mode
         ' Remove whitespace and standardize decimal separator
         _expression = expression.Replace(" ", "").Replace(ControlChars.Tab, "")
         If _expression.Length > 0 Then
@@ -23,8 +34,8 @@ Public Class ScientificExpressionEvaluator
         End If
     End Sub
 
-    Public Shared Function Evaluate(expression As String) As Double
-        Dim evaluator As New ScientificExpressionEvaluator(expression)
+    Public Shared Function Evaluate(expression As String, Optional mode As AngleMode = AngleMode.Degrees) As Double
+        Dim evaluator As New ScientificExpressionEvaluator(expression, mode)
         Dim result As Double = evaluator.ParseExpression()
         If evaluator._pos < evaluator._expression.Length Then
             Throw New InvalidOperationException($"Unexpected character: '{evaluator._currentChar}' at position {evaluator._pos}")
@@ -163,38 +174,95 @@ Public Class ScientificExpressionEvaluator
 
             Select Case identifier
                 Case "sin"
-                    ' In radians; for angle handling standard Math.Sin
-                    Return Math.Sin(argument)
-                Case "cos"
-                    Return Math.Cos(argument)
-                Case "tan"
-                    ' Tan undefined at pi/2 + k*pi
-                    Dim cosVal As Double = Math.Cos(argument)
-                    If Math.Abs(cosVal) < 1E-15 Then
-                        Throw New InvalidOperationException("Tangent undefined.")
+                    Dim radAngle As Double = ToRadians(argument)
+                    ' Clean known zero points in degrees (sin(180) = 0)
+                    If _angleMode = AngleMode.Degrees AndAlso (argument Mod 180 = 0) Then
+                        Return 0.0
                     End If
-                    Return Math.Tan(argument)
+                    Return Math.Sin(radAngle)
+
+                Case "cos"
+                    Dim radAngle As Double = ToRadians(argument)
+                    ' Clean known zero points in degrees (cos(90) = 0, cos(270) = 0)
+                    If _angleMode = AngleMode.Degrees AndAlso (Math.Abs(argument Mod 180) = 90) Then
+                        Return 0.0
+                    End If
+                    Return Math.Cos(radAngle)
+
+                Case "tan"
+                    ' Tan undefined at 90 + k*180 in degrees or pi/2 + k*pi in radians
+                    If _angleMode = AngleMode.Degrees Then
+                        If Math.Abs(argument Mod 180) = 90 Then
+                            Throw New InvalidOperationException("Tangent undefined at 90°.")
+                        End If
+                        If argument Mod 180 = 0 Then
+                            Return 0.0
+                        End If
+                        Return Math.Tan(ToRadians(argument))
+                    Else
+                        Dim cosVal As Double = Math.Cos(argument)
+                        If Math.Abs(cosVal) < 1E-15 Then
+                            Throw New InvalidOperationException("Tangent undefined.")
+                        End If
+                        Return Math.Tan(argument)
+                    End If
+
+                Case "asin"
+                    If argument < -1.0 OrElse argument > 1.0 Then
+                        Throw New InvalidOperationException("Domain error: asin argument must be between -1 and 1.")
+                    End If
+                    Dim radResult As Double = Math.Asin(argument)
+                    Return FromRadians(radResult)
+
+                Case "acos"
+                    If argument < -1.0 OrElse argument > 1.0 Then
+                        Throw New InvalidOperationException("Domain error: acos argument must be between -1 and 1.")
+                    End If
+                    Dim radResult As Double = Math.Acos(argument)
+                    Return FromRadians(radResult)
+
+                Case "atan"
+                    Dim radResult As Double = Math.Atan(argument)
+                    Return FromRadians(radResult)
+
                 Case "sqrt"
                     If argument < 0 Then
                         Throw New InvalidOperationException("Cannot calculate square root of a negative number.")
                     End If
                     Return Math.Sqrt(argument)
+
                 Case "log10", "log"
                     If argument <= 0 Then
                         Throw New InvalidOperationException("Logarithm undefined for values <= 0.")
                     End If
                     Return Math.Log10(argument)
+
                 Case "ln"
                     If argument <= 0 Then
                         Throw New InvalidOperationException("Natural log undefined for values <= 0.")
                     End If
                     Return Math.Log(argument)
+
                 Case Else
                     Throw New InvalidOperationException($"Unknown function: {identifier}")
             End Select
         End If
 
         Throw New InvalidOperationException($"Unexpected character: '{_currentChar}'")
+    End Function
+
+    Private Function ToRadians(angle As Double) As Double
+        If _angleMode = AngleMode.Degrees Then
+            Return angle * (Math.PI / 180.0)
+        End If
+        Return angle
+    End Function
+
+    Private Function FromRadians(radians As Double) As Double
+        If _angleMode = AngleMode.Degrees Then
+            Return radians * (180.0 / Math.PI)
+        End If
+        Return radians
     End Function
 
     Private Function ParseNumber() As Double

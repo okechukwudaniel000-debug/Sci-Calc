@@ -6,6 +6,30 @@ Imports System.Globalization
 ''' </summary>
 Public Class Form1
 
+    ''' <summary>
+    ''' Current angle mode for trigonometric calculations (Degrees or Radians).
+    ''' </summary>
+    Private currentAngleMode As AngleMode = AngleMode.Degrees
+
+#Region "Event Handlers - Angle Mode"
+
+    ''' <summary>
+    ''' Handles toggling between Degrees and Radians mode.
+    ''' </summary>
+    Private Sub DegRadButton_Click(sender As Object, e As EventArgs) Handles btnDegRad.Click
+        If currentAngleMode = AngleMode.Degrees Then
+            currentAngleMode = AngleMode.Radians
+            lblMode.Text = "RAD"
+            lblMode.ForeColor = Color.FromArgb(255, 140, 0)
+        Else
+            currentAngleMode = AngleMode.Degrees
+            lblMode.Text = "DEG"
+            lblMode.ForeColor = Color.FromArgb(0, 150, 255)
+        End If
+    End Sub
+
+#End Region
+
 #Region "Event Handlers - Numeric Buttons"
 
     ''' <summary>
@@ -278,7 +302,7 @@ Public Class Form1
             End If
 
             ' Evaluate using our dedicated scientific evaluator
-            Dim result As Double = ScientificExpressionEvaluator.Evaluate(expression)
+            Dim result As Double = ScientificExpressionEvaluator.Evaluate(expression, currentAngleMode)
             
             If Double.IsNaN(result) OrElse Double.IsInfinity(result) Then
                 txtDisplay.Text = "Error: Invalid Operation"
