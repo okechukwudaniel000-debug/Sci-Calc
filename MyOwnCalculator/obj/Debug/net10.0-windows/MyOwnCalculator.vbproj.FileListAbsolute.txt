@@ -1,0 +1,16 @@
+C:\Users\HomePC\source\repos\MyOwnCalculatorSolution1\MyOwnCalculator\bin\Debug\net10.0-windows\MyOwnCalculator.exe
+C:\Users\HomePC\source\repos\MyOwnCalculatorSolution1\MyOwnCalculator\bin\Debug\net10.0-windows\MyOwnCalculator.deps.json
+C:\Users\HomePC\source\repos\MyOwnCalculatorSolution1\MyOwnCalculator\bin\Debug\net10.0-windows\MyOwnCalculator.runtimeconfig.json
+C:\Users\HomePC\source\repos\MyOwnCalculatorSolution1\MyOwnCalculator\bin\Debug\net10.0-windows\MyOwnCalculator.dll
+C:\Users\HomePC\source\repos\MyOwnCalculatorSolution1\MyOwnCalculator\bin\Debug\net10.0-windows\MyOwnCalculator.pdb
+C:\Users\HomePC\source\repos\MyOwnCalculatorSolution1\MyOwnCalculator\obj\Debug\net10.0-windows\MyOwnCalculator.Form1.resources
+C:\Users\HomePC\source\repos\MyOwnCalculatorSolution1\MyOwnCalculator\obj\Debug\net10.0-windows\MyOwnCalculator.vbproj.GenerateResource.cache
+C:\Users\HomePC\source\repos\MyOwnCalculatorSolution1\MyOwnCalculator\obj\Debug\net10.0-windows\MyOwnCalculator.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\HomePC\source\repos\MyOwnCalculatorSolution1\MyOwnCalculator\obj\Debug\net10.0-windows\MyOwnCalculator.AssemblyInfoInputs.cache
+C:\Users\HomePC\source\repos\MyOwnCalculatorSolution1\MyOwnCalculator\obj\Debug\net10.0-windows\MyOwnCalculator.AssemblyInfo.vb
+C:\Users\HomePC\source\repos\MyOwnCalculatorSolution1\MyOwnCalculator\obj\Debug\net10.0-windows\MyOwnCalculator.vbproj.CoreCompileInputs.cache
+C:\Users\HomePC\source\repos\MyOwnCalculatorSolution1\MyOwnCalculator\obj\Debug\net10.0-windows\MyOwnCalculator.dll
+C:\Users\HomePC\source\repos\MyOwnCalculatorSolution1\MyOwnCalculator\obj\Debug\net10.0-windows\refint\MyOwnCalculator.dll
+C:\Users\HomePC\source\repos\MyOwnCalculatorSolution1\MyOwnCalculator\obj\Debug\net10.0-windows\MyOwnCalculator.pdb
+C:\Users\HomePC\source\repos\MyOwnCalculatorSolution1\MyOwnCalculator\obj\Debug\net10.0-windows\MyOwnCalculator.genruntimeconfig.cache
+C:\Users\HomePC\source\repos\MyOwnCalculatorSolution1\MyOwnCalculator\obj\Debug\net10.0-windows\ref\MyOwnCalculator.dll

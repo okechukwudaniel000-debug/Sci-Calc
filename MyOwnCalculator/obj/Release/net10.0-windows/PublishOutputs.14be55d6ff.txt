@@ -1,0 +1,5 @@
+C:\Users\HomePC\source\repos\MyOwnCalculatorSolution1\MyOwnCalculator\bin\Release\net10.0-windows\publish\MyOwnCalculator.exe
+C:\Users\HomePC\source\repos\MyOwnCalculatorSolution1\MyOwnCalculator\bin\Release\net10.0-windows\publish\MyOwnCalculator.dll
+C:\Users\HomePC\source\repos\MyOwnCalculatorSolution1\MyOwnCalculator\bin\Release\net10.0-windows\publish\MyOwnCalculator.deps.json
+C:\Users\HomePC\source\repos\MyOwnCalculatorSolution1\MyOwnCalculator\bin\Release\net10.0-windows\publish\MyOwnCalculator.runtimeconfig.json
+C:\Users\HomePC\source\repos\MyOwnCalculatorSolution1\MyOwnCalculator\bin\Release\net10.0-windows\publish\MyOwnCalculator.pdb
