@@ -20,54 +20,50 @@ Partial Class Form1
         txtExpression = New TextBox()
         txtResult = New TextBox()
         pnlKeypad = New TableLayoutPanel()
-        
+
         btnDegRad = New Button()
         btnSquare = New Button()
         btnPower = New Button()
         btnPi = New Button()
         btnDelete = New Button()
-        
-        btnCube = New Button()
+
+        btnExp = New Button()
         btnReciprocal = New Button()
         btnSin = New Button()
         btnCos = New Button()
         btnTan = New Button()
-        
-        btnExp = New Button()
+
         btnSqrt = New Button()
-        btnAsin = New Button()
-        btnAcos = New Button()
-        btnAtan = New Button()
-        
         btnLog = New Button()
         btnLn = New Button()
         btnOpenBracket = New Button()
         btnCloseBracket = New Button()
-        btnFactorial = New Button()
-        
+
         btnClear = New Button()
         btnPercent = New Button()
+        btnFactorial = New Button()
         btnDivide = New Button()
         btnMultiply = New Button()
-        btnMinus = New Button()
-        
+
         btnSeven = New Button()
         btnEight = New Button()
         btnNine = New Button()
-        btnPlus = New Button()
-        
+        btnMinus = New Button()
+        btnE = New Button()
+
         btnFour = New Button()
         btnFive = New Button()
         btnSix = New Button()
-        
+        btnPlus = New Button()
+        btnCube = New Button()
+
         btnOne = New Button()
         btnTwo = New Button()
         btnThree = New Button()
         btnEquals = New Button()
-        
+
         btnZero = New Button()
         btnDecimal = New Button()
-        btnE = New Button()
 
         pnlDisplay.SuspendLayout()
         SuspendLayout()
@@ -82,8 +78,8 @@ Partial Class Form1
         pnlDisplay.Dock = DockStyle.Top
         pnlDisplay.Location = New Point(0, 0)
         pnlDisplay.Name = "pnlDisplay"
-        pnlDisplay.Padding = New Padding(20, 14, 20, 10)
-        pnlDisplay.Size = New Size(420, 145)
+        pnlDisplay.Padding = New Padding(20, 12, 20, 10)
+        pnlDisplay.Size = New Size(420, 140)
         pnlDisplay.TabIndex = 0
 
         '
@@ -92,7 +88,7 @@ Partial Class Form1
         lblMode.AutoSize = True
         lblMode.Font = New Font("Segoe UI", 9.5F, FontStyle.Bold)
         lblMode.ForeColor = Color.FromArgb(255, 159, 10)
-        lblMode.Location = New Point(20, 12)
+        lblMode.Location = New Point(20, 10)
         lblMode.Name = "lblMode"
         lblMode.Size = New Size(42, 21)
         lblMode.TabIndex = 0
@@ -105,7 +101,7 @@ Partial Class Form1
         txtExpression.BorderStyle = BorderStyle.None
         txtExpression.Font = New Font("Segoe UI", 13.0F, FontStyle.Regular)
         txtExpression.ForeColor = Color.FromArgb(160, 165, 175)
-        txtExpression.Location = New Point(20, 38)
+        txtExpression.Location = New Point(20, 36)
         txtExpression.Name = "txtExpression"
         txtExpression.ReadOnly = True
         txtExpression.Size = New Size(380, 29)
@@ -119,7 +115,7 @@ Partial Class Form1
         txtResult.BorderStyle = BorderStyle.None
         txtResult.Font = New Font("Segoe UI Semibold", 26.0F, FontStyle.Bold)
         txtResult.ForeColor = Color.White
-        txtResult.Location = New Point(20, 72)
+        txtResult.Location = New Point(20, 70)
         txtResult.Name = "txtResult"
         txtResult.ReadOnly = True
         txtResult.Size = New Size(380, 58)
@@ -138,7 +134,7 @@ Partial Class Form1
         pnlKeypad.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 20.0F))
         pnlKeypad.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 20.0F))
         pnlKeypad.Dock = DockStyle.Fill
-        pnlKeypad.Location = New Point(0, 145)
+        pnlKeypad.Location = New Point(0, 140)
         pnlKeypad.Name = "pnlKeypad"
         pnlKeypad.Padding = New Padding(10, 8, 10, 12)
         pnlKeypad.RowCount = 8
@@ -150,60 +146,61 @@ Partial Class Form1
         pnlKeypad.RowStyles.Add(New RowStyle(SizeType.Percent, 12.5F))
         pnlKeypad.RowStyles.Add(New RowStyle(SizeType.Percent, 12.5F))
         pnlKeypad.RowStyles.Add(New RowStyle(SizeType.Percent, 12.5F))
-        pnlKeypad.Size = New Size(420, 505)
+        pnlKeypad.Size = New Size(420, 510)
         pnlKeypad.TabIndex = 1
 
-        ' Configure Buttons
+        ' Button Styling
+        ' Scientific functions: Sleek charcoal background
         ConfigureButton(btnDegRad, "DEG", Color.FromArgb(44, 46, 51), Color.FromArgb(255, 159, 10), 10.0F, True)
         ConfigureButton(btnSquare, "x²", Color.FromArgb(44, 46, 51), Color.FromArgb(220, 225, 235), 13.0F)
         ConfigureButton(btnPower, "xʸ", Color.FromArgb(44, 46, 51), Color.FromArgb(220, 225, 235), 13.0F)
         ConfigureButton(btnPi, "π", Color.FromArgb(44, 46, 51), Color.FromArgb(220, 225, 235), 14.0F)
         ConfigureButton(btnDelete, "⌫", Color.FromArgb(50, 52, 58), Color.FromArgb(255, 130, 130), 14.0F, True)
 
-        ConfigureButton(btnCube, "x³", Color.FromArgb(44, 46, 51), Color.FromArgb(220, 225, 235), 13.0F)
+        ConfigureButton(btnExp, "eˣ", Color.FromArgb(44, 46, 51), Color.FromArgb(220, 225, 235), 13.0F)
         ConfigureButton(btnReciprocal, "1/x", Color.FromArgb(44, 46, 51), Color.FromArgb(220, 225, 235), 11.5F)
         ConfigureButton(btnSin, "sin", Color.FromArgb(44, 46, 51), Color.FromArgb(220, 225, 235), 12.5F)
         ConfigureButton(btnCos, "cos", Color.FromArgb(44, 46, 51), Color.FromArgb(220, 225, 235), 12.5F)
         ConfigureButton(btnTan, "tan", Color.FromArgb(44, 46, 51), Color.FromArgb(220, 225, 235), 12.5F)
 
-        ConfigureButton(btnExp, "eˣ", Color.FromArgb(44, 46, 51), Color.FromArgb(220, 225, 235), 13.0F)
-        ConfigureButton(btnSqrt, "√x", Color.FromArgb(44, 46, 51), Color.FromArgb(220, 225, 235), 13.0F)
-        ConfigureButton(btnAsin, "sin⁻¹", Color.FromArgb(44, 46, 51), Color.FromArgb(220, 225, 235), 10.5F)
-        ConfigureButton(btnAcos, "cos⁻¹", Color.FromArgb(44, 46, 51), Color.FromArgb(220, 225, 235), 10.5F)
-        ConfigureButton(btnAtan, "tan⁻¹", Color.FromArgb(44, 46, 51), Color.FromArgb(220, 225, 235), 10.5F)
-
+        ConfigureButton(btnSqrt, "√", Color.FromArgb(44, 46, 51), Color.FromArgb(220, 225, 235), 13.5F)
         ConfigureButton(btnLog, "log", Color.FromArgb(44, 46, 51), Color.FromArgb(220, 225, 235), 12.5F)
         ConfigureButton(btnLn, "ln", Color.FromArgb(44, 46, 51), Color.FromArgb(220, 225, 235), 12.5F)
         ConfigureButton(btnOpenBracket, "(", Color.FromArgb(44, 46, 51), Color.FromArgb(220, 225, 235), 14.0F)
         ConfigureButton(btnCloseBracket, ")", Color.FromArgb(44, 46, 51), Color.FromArgb(220, 225, 235), 14.0F)
-        ConfigureButton(btnFactorial, "n!", Color.FromArgb(44, 46, 51), Color.FromArgb(220, 225, 235), 12.5F)
 
-        ' Row 4 (Clear / Ops)
+        ' Row 3: AC, %, n!, ÷, ×
         ConfigureButton(btnClear, "AC", Color.FromArgb(255, 179, 0), Color.FromArgb(20, 20, 20), 14.0F, True)
         ConfigureButton(btnPercent, "%", Color.FromArgb(50, 52, 58), Color.FromArgb(235, 240, 250), 13.5F)
-        ConfigureButton(btnE, "e", Color.FromArgb(44, 46, 51), Color.FromArgb(220, 225, 235), 13.5F)
+        ConfigureButton(btnFactorial, "n!", Color.FromArgb(44, 46, 51), Color.FromArgb(220, 225, 235), 12.5F)
         ConfigureButton(btnDivide, "÷", Color.FromArgb(58, 62, 70), Color.FromArgb(255, 179, 0), 18.0F, True)
         ConfigureButton(btnMultiply, "×", Color.FromArgb(58, 62, 70), Color.FromArgb(255, 179, 0), 18.0F, True)
 
-        ' Digits & Ops
+        ' Row 4: 7, 8, 9, −, e
         ConfigureButton(btnSeven, "7", Color.FromArgb(60, 64, 72), Color.White, 16.0F)
         ConfigureButton(btnEight, "8", Color.FromArgb(60, 64, 72), Color.White, 16.0F)
         ConfigureButton(btnNine, "9", Color.FromArgb(60, 64, 72), Color.White, 16.0F)
         ConfigureButton(btnMinus, "−", Color.FromArgb(58, 62, 70), Color.FromArgb(255, 179, 0), 18.0F, True)
+        ConfigureButton(btnE, "e", Color.FromArgb(44, 46, 51), Color.FromArgb(220, 225, 235), 13.5F)
 
+        ' Row 5: 4, 5, 6, +, x³
         ConfigureButton(btnFour, "4", Color.FromArgb(60, 64, 72), Color.White, 16.0F)
         ConfigureButton(btnFive, "5", Color.FromArgb(60, 64, 72), Color.White, 16.0F)
         ConfigureButton(btnSix, "6", Color.FromArgb(60, 64, 72), Color.White, 16.0F)
         ConfigureButton(btnPlus, "+", Color.FromArgb(58, 62, 70), Color.FromArgb(255, 179, 0), 18.0F, True)
+        ConfigureButton(btnCube, "x³", Color.FromArgb(44, 46, 51), Color.FromArgb(220, 225, 235), 13.0F)
 
+        ' Row 6: 1, 2, 3, = (row span 2)
         ConfigureButton(btnOne, "1", Color.FromArgb(60, 64, 72), Color.White, 16.0F)
         ConfigureButton(btnTwo, "2", Color.FromArgb(60, 64, 72), Color.White, 16.0F)
         ConfigureButton(btnThree, "3", Color.FromArgb(60, 64, 72), Color.White, 16.0F)
-        ConfigureButton(btnEquals, "=", Color.FromArgb(255, 179, 0), Color.FromArgb(20, 20, 20), 20.0F, True)
+        ConfigureButton(btnEquals, "=", Color.FromArgb(255, 179, 0), Color.FromArgb(20, 20, 20), 22.0F, True)
 
+        ' Row 7: 0 (col span 2), .
         ConfigureButton(btnZero, "0", Color.FromArgb(60, 64, 72), Color.White, 16.0F)
-        ConfigureButton(btnDecimal, ".", Color.FromArgb(60, 64, 72), Color.White, 18.0F)
+        ConfigureButton(btnDecimal, ".", Color.FromArgb(60, 64, 72), Color.White, 18.0F, True)
 
+        ' Add to TableLayoutPanel Grid
         ' Row 0: Scientific Row 1
         pnlKeypad.Controls.Add(btnDegRad, 0, 0)
         pnlKeypad.Controls.Add(btnSquare, 1, 0)
@@ -212,69 +209,71 @@ Partial Class Form1
         pnlKeypad.Controls.Add(btnDelete, 4, 0)
 
         ' Row 1: Scientific Row 2
-        pnlKeypad.Controls.Add(btnCube, 0, 1)
+        pnlKeypad.Controls.Add(btnExp, 0, 1)
         pnlKeypad.Controls.Add(btnReciprocal, 1, 1)
         pnlKeypad.Controls.Add(btnSin, 2, 1)
         pnlKeypad.Controls.Add(btnCos, 3, 1)
         pnlKeypad.Controls.Add(btnTan, 4, 1)
 
         ' Row 2: Scientific Row 3
-        pnlKeypad.Controls.Add(btnExp, 0, 2)
-        pnlKeypad.Controls.Add(btnSqrt, 1, 2)
-        pnlKeypad.Controls.Add(btnAsin, 2, 2)
-        pnlKeypad.Controls.Add(btnAcos, 3, 2)
-        pnlKeypad.Controls.Add(btnAtan, 4, 2)
+        pnlKeypad.Controls.Add(btnSqrt, 0, 2)
+        pnlKeypad.Controls.Add(btnLog, 1, 2)
+        pnlKeypad.Controls.Add(btnLn, 2, 2)
+        pnlKeypad.Controls.Add(btnOpenBracket, 3, 2)
+        pnlKeypad.Controls.Add(btnCloseBracket, 4, 2)
 
-        ' Row 3: Scientific Row 4
-        pnlKeypad.Controls.Add(btnLog, 0, 3)
-        pnlKeypad.Controls.Add(btnLn, 1, 3)
-        pnlKeypad.Controls.Add(btnOpenBracket, 2, 3)
-        pnlKeypad.Controls.Add(btnCloseBracket, 3, 3)
-        pnlKeypad.Controls.Add(btnFactorial, 4, 3)
+        ' Row 3: AC, %, n!, ÷, ×
+        pnlKeypad.Controls.Add(btnClear, 0, 3)
+        pnlKeypad.Controls.Add(btnPercent, 1, 3)
+        pnlKeypad.Controls.Add(btnFactorial, 2, 3)
+        pnlKeypad.Controls.Add(btnDivide, 3, 3)
+        pnlKeypad.Controls.Add(btnMultiply, 4, 3)
 
-        ' Row 4: AC, %, e, ÷, ×
-        pnlKeypad.Controls.Add(btnClear, 0, 4)
-        pnlKeypad.Controls.Add(btnPercent, 1, 4)
-        pnlKeypad.Controls.Add(btnE, 2, 4)
-        pnlKeypad.Controls.Add(btnDivide, 3, 4)
-        pnlKeypad.Controls.Add(btnMultiply, 4, 4)
+        ' Row 4: 7, 8, 9, −, e
+        pnlKeypad.Controls.Add(btnSeven, 0, 4)
+        pnlKeypad.Controls.Add(btnEight, 1, 4)
+        pnlKeypad.Controls.Add(btnNine, 2, 4)
+        pnlKeypad.Controls.Add(btnMinus, 3, 4)
+        pnlKeypad.Controls.Add(btnE, 4, 4)
 
-        ' Row 5: 7, 8, 9, −, [Empty for now or spanning]
-        pnlKeypad.Controls.Add(btnSeven, 0, 5)
-        pnlKeypad.Controls.Add(btnEight, 1, 5)
-        pnlKeypad.Controls.Add(btnNine, 2, 5)
-        pnlKeypad.Controls.Add(btnMinus, 3, 5)
+        ' Row 5: 4, 5, 6, +, x³
+        pnlKeypad.Controls.Add(btnFour, 0, 5)
+        pnlKeypad.Controls.Add(btnFive, 1, 5)
+        pnlKeypad.Controls.Add(btnSix, 2, 5)
+        pnlKeypad.Controls.Add(btnPlus, 3, 5)
+        pnlKeypad.Controls.Add(btnCube, 4, 5)
 
-        ' Row 6: 4, 5, 6, +
-        pnlKeypad.Controls.Add(btnFour, 0, 6)
-        pnlKeypad.Controls.Add(btnFive, 1, 6)
-        pnlKeypad.Controls.Add(btnSix, 2, 6)
-        pnlKeypad.Controls.Add(btnPlus, 3, 6)
+        ' Row 6: 1, 2, 3, = (spans rows 6 and 7, cols 3 and 4 or col 4)
+        ' Let's place: 1 at (0,6), 2 at (1,6), 3 at (2,6)
+        ' Equals at (3,6) with ColSpan=2 and RowSpan=2!
+        pnlKeypad.Controls.Add(btnOne, 0, 6)
+        pnlKeypad.Controls.Add(btnTwo, 1, 6)
+        pnlKeypad.Controls.Add(btnThree, 2, 6)
+        pnlKeypad.Controls.Add(btnEquals, 3, 6)
+        pnlKeypad.SetColumnSpan(btnEquals, 2)
+        pnlKeypad.SetRowSpan(btnEquals, 2)
 
-        ' Row 7: 0 (span 2 cols), ., 1, 2, 3
-        ' Wait, let's look at 5 columns:
-        ' Col 0, Col 1, Col 2, Col 3, Col 4
-        ' In Row 5: 7 (0), 8 (1), 9 (2), Minus (3), Equals (4, span rows 5,6,7)
-        ' In Row 6: 4 (0), 5 (1), 6 (2), Plus (3)
-        ' In Row 7: 1, 2, 3 in Row 6?
-        ' Standard layout:
-        ' Row 5: 7, 8, 9, Minus, Plus
-        ' Row 6: 4, 5, 6, (something), Equals
-        ' Let's organize cleanly:
-        ' Col 0, 1, 2 are numbers (7,8,9 / 4,5,6 / 1,2,3 / 0, .)
-        ' Col 3 is Minus, Plus, etc.
-        ' Col 4 is Equals!
-        pnlKeypad.Controls.Add(btnEquals, 4, 5)
-        pnlKeypad.SetRowSpan(btnEquals, 3)
+        ' Row 7: 0 (cols 0 & 1, colSpan 2), . at col 2
+        pnlKeypad.Controls.Add(btnZero, 0, 7)
+        pnlKeypad.SetColumnSpan(btnZero, 2)
+        pnlKeypad.Controls.Add(btnDecimal, 2, 7)
 
-        ' Row 7:
-        ' 1, 2, 3, 0, .
-        ' But wait: 1, 2, 3 are 3 digits. 0 and . are 2 digits.
-        ' If Row 5 is: 7, 8, 9, Minus, Equals (span 3)
-        ' Row 6 is: 4, 5, 6, Plus
-        ' Row 7 is: 1, 2, 3 in Row 7? Where do 0 and . go?
-        ' Ah! There are 4 rows for numbers! (7-8-9, 4-5-6, 1-2-3, 0-. ) That is 4 rows!
-        ' Let's make 9 rows or merge scientific rows!
+        '
+        ' Form1
+        '
+        AutoScaleDimensions = New SizeF(8.0F, 20.0F)
+        AutoScaleMode = AutoScaleMode.Font
+        BackColor = Color.FromArgb(30, 31, 34)
+        ClientSize = New Size(420, 650)
+        Controls.Add(pnlKeypad)
+        Controls.Add(pnlDisplay)
+        FormBorderStyle = FormBorderStyle.FixedDialog
+        MaximizeBox = False
+        Name = "Form1"
+        StartPosition = FormStartPosition.CenterScreen
+        Text = "Scientific Calculator"
+        pnlDisplay.ResumeLayout(False)
+        pnlDisplay.PerformLayout()
         ResumeLayout(False)
     End Sub
 
@@ -304,38 +303,35 @@ Partial Class Form1
     Friend WithEvents btnPi As Button
     Friend WithEvents btnDelete As Button
 
-    Friend WithEvents btnCube As Button
+    Friend WithEvents btnExp As Button
     Friend WithEvents btnReciprocal As Button
     Friend WithEvents btnSin As Button
     Friend WithEvents btnCos As Button
     Friend WithEvents btnTan As Button
 
-    Friend WithEvents btnExp As Button
     Friend WithEvents btnSqrt As Button
-    Friend WithEvents btnAsin As Button
-    Friend WithEvents btnAcos As Button
-    Friend WithEvents btnAtan As Button
-
     Friend WithEvents btnLog As Button
     Friend WithEvents btnLn As Button
     Friend WithEvents btnOpenBracket As Button
     Friend WithEvents btnCloseBracket As Button
-    Friend WithEvents btnFactorial As Button
 
     Friend WithEvents btnClear As Button
     Friend WithEvents btnPercent As Button
+    Friend WithEvents btnFactorial As Button
     Friend WithEvents btnDivide As Button
     Friend WithEvents btnMultiply As Button
-    Friend WithEvents btnMinus As Button
 
     Friend WithEvents btnSeven As Button
     Friend WithEvents btnEight As Button
     Friend WithEvents btnNine As Button
-    Friend WithEvents btnPlus As Button
+    Friend WithEvents btnMinus As Button
+    Friend WithEvents btnE As Button
 
     Friend WithEvents btnFour As Button
     Friend WithEvents btnFive As Button
     Friend WithEvents btnSix As Button
+    Friend WithEvents btnPlus As Button
+    Friend WithEvents btnCube As Button
 
     Friend WithEvents btnOne As Button
     Friend WithEvents btnTwo As Button
@@ -343,7 +339,6 @@ Partial Class Form1
 
     Friend WithEvents btnZero As Button
     Friend WithEvents btnDecimal As Button
-    Friend WithEvents btnE As Button
     Friend WithEvents btnEquals As Button
 
 End Class
