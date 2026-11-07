@@ -31,3 +31,4 @@ C:\Users\USER\Desktop\MyOwnCalculatorSolution1\MyOwnCalculator\obj\Debug\net10.0
 C:\Users\USER\Desktop\MyOwnCalculatorSolution1\MyOwnCalculator\obj\Debug\net10.0-windows\MyOwnCalculator.pdb
 C:\Users\USER\Desktop\MyOwnCalculatorSolution1\MyOwnCalculator\obj\Debug\net10.0-windows\MyOwnCalculator.genruntimeconfig.cache
 C:\Users\USER\Desktop\MyOwnCalculatorSolution1\MyOwnCalculator\obj\Debug\net10.0-windows\ref\MyOwnCalculator.dll
+C:\Users\USER\Desktop\MyOwnCalculatorSolution1\MyOwnCalculator\obj\Debug\net10.0-windows\MyOwnCal.4C07B4BA.Up2Date
