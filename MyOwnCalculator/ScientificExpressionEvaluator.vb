@@ -28,7 +28,7 @@ Public Class ScientificExpressionEvaluator
         End If
         _angleMode = mode
         ' Remove whitespace and standardize decimal separator
-        _expression = expression.Replace(" ", "").Replace(ControlChars.Tab, "")
+        _expression = expression.Replace(" ", "").Replace(ControlChars.Tab, "").Replace("×", "*").Replace("÷", "/").Replace("−", "-")
         If _expression.Length > 0 Then
             _currentChar = _expression(0)
         End If
