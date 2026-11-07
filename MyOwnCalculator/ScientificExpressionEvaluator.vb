@@ -96,10 +96,10 @@ Public Class ScientificExpressionEvaluator
     End Function
 
     ''' <summary>
-    ''' Handles exponentiation (right-associative): ^
+    ''' Handles exponentiation (right-associative): ^ and postfix factorial: ! or percentage: %
     ''' </summary>
     Private Function ParseFactor() As Double
-        Dim result As Double = ParseUnary()
+        Dim result As Double = ParsePostfix()
 
         If _currentChar = "^"c Then
             Advance()
@@ -111,6 +111,38 @@ Public Class ScientificExpressionEvaluator
         End If
 
         Return result
+    End Function
+
+    ''' <summary>
+    ''' Handles postfix operators like factorial (!) and percentage (%)
+    ''' </summary>
+    Private Function ParsePostfix() As Double
+        Dim result As Double = ParseUnary()
+
+        While _currentChar = "!"c OrElse _currentChar = "%"c
+            If _currentChar = "!"c Then
+                Advance()
+                ' Factorial
+                If result < 0 OrElse Math.Floor(result) <> result OrElse result > 170 Then
+                    Throw New InvalidOperationException("Invalid factorial value.")
+                End If
+                result = Factorial(CInt(result))
+            ElseIf _currentChar = "%"c Then
+                Advance()
+                result = result / 100.0
+            End If
+        End While
+
+        Return result
+    End Function
+
+    Private Shared Function Factorial(n As Integer) As Double
+        If n <= 1 Then Return 1.0
+        Dim fact As Double = 1.0
+        For i As Integer = 2 To n
+            fact *= i
+        Next
+        Return fact
     End Function
 
     ''' <summary>
