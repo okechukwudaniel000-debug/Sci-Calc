@@ -381,7 +381,7 @@ Public Class Form1
             If IsOperator(lastChar) OrElse lastChar = "("c Then
                 txtResult.AppendText(constantSymbol)
             Else
-                txtResult.AppendText("×" constantSymbol)
+                txtResult.AppendText("×" & constantSymbol)
             End If
         End If
     End Sub
