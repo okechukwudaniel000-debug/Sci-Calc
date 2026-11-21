@@ -387,7 +387,7 @@ Public Class Form1
     End Sub
 
     Private Function FormatResult(value As Double) As String
-        If Math.Abs(value) < 1E-14 AndAlso value <> 0.0 Then
+        If Math.Abs(value) < 0.00000000000001 AndAlso value <> 0.0 Then
             value = 0.0
         End If
 
