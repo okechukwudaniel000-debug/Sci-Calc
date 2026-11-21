@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\USER\\Desktop\\MyOwnCalculatorSolution1\\MyOwnCalculator\\MyOwnCalculator.vbproj": {}
+    "C:\\Users\\USER\\DESKTOP\\MyOwnCalculatorSolution1\\MyOwnCalculator\\MyOwnCalculator.vbproj": {}
   },
   "projects": {
-    "C:\\Users\\USER\\Desktop\\MyOwnCalculatorSolution1\\MyOwnCalculator\\MyOwnCalculator.vbproj": {
+    "C:\\Users\\USER\\DESKTOP\\MyOwnCalculatorSolution1\\MyOwnCalculator\\MyOwnCalculator.vbproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\USER\\Desktop\\MyOwnCalculatorSolution1\\MyOwnCalculator\\MyOwnCalculator.vbproj",
+        "projectUniqueName": "C:\\Users\\USER\\DESKTOP\\MyOwnCalculatorSolution1\\MyOwnCalculator\\MyOwnCalculator.vbproj",
         "projectName": "MyOwnCalculator",
-        "projectPath": "C:\\Users\\USER\\Desktop\\MyOwnCalculatorSolution1\\MyOwnCalculator\\MyOwnCalculator.vbproj",
+        "projectPath": "C:\\Users\\USER\\DESKTOP\\MyOwnCalculatorSolution1\\MyOwnCalculator\\MyOwnCalculator.vbproj",
         "packagesPath": "C:\\Users\\USER\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\USER\\Desktop\\MyOwnCalculatorSolution1\\MyOwnCalculator\\obj\\",
+        "outputPath": "C:\\Users\\USER\\DESKTOP\\MyOwnCalculatorSolution1\\MyOwnCalculator\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
