@@ -149,69 +149,330 @@ Partial Class Form1
         pnlKeypad.Size = New Size(540, 385)
         pnlKeypad.TabIndex = 1
 
-        ' Button Styling matching the reference clean light Windows desktop style
-        Dim btnWhite As Color = Color.White
-        Dim btnTextDark As Color = Color.FromArgb(10, 10, 10)
-
-        ' Left Numeric / Standard Pad:
-        ' Row 0: ⌫, CE, C, ±
-        ConfigureButton(btnDelete, "⌫", btnWhite, btnTextDark, 12.0F, True)
-        ConfigureButton(btnOpenBracket, "(", btnWhite, btnTextDark, 12.0F, True)
-        ConfigureButton(btnClear, "C", btnWhite, btnTextDark, 12.0F, True)
-        ConfigureButton(btnCloseBracket, ")", btnWhite, btnTextDark, 12.0F, True)
-
-        ' Row 1: 7, 8, 9, +
-        ConfigureButton(btnSeven, "7", btnWhite, btnTextDark, 13.0F, True)
-        ConfigureButton(btnEight, "8", btnWhite, btnTextDark, 13.0F, True)
-        ConfigureButton(btnNine, "9", btnWhite, btnTextDark, 13.0F, True)
-        ConfigureButton(btnPlus, "+", btnWhite, btnTextDark, 13.0F, True)
-
-        ' Row 2: 4, 5, 6, -
-        ConfigureButton(btnFour, "4", btnWhite, btnTextDark, 13.0F, True)
-        ConfigureButton(btnFive, "5", btnWhite, btnTextDark, 13.0F, True)
-        ConfigureButton(btnSix, "6", btnWhite, btnTextDark, 13.0F, True)
-        ConfigureButton(btnMinus, "-", btnWhite, btnTextDark, 14.0F, True)
-
-        ' Row 3: 1, 2, 3, *
-        ConfigureButton(btnOne, "1", btnWhite, btnTextDark, 13.0F, True)
-        ConfigureButton(btnTwo, "2", btnWhite, btnTextDark, 13.0F, True)
-        ConfigureButton(btnThree, "3", btnWhite, btnTextDark, 13.0F, True)
-        ConfigureButton(btnMultiply, "*", btnWhite, btnTextDark, 13.0F, True)
-
-        ' Row 4: 0, ., =, /
-        ConfigureButton(btnZero, "0", btnWhite, btnTextDark, 13.0F, True)
-        ConfigureButton(btnDecimal, ".", btnWhite, btnTextDark, 14.0F, True)
-        ConfigureButton(btnEquals, "=", btnWhite, btnTextDark, 13.0F, True)
-        ConfigureButton(btnDivide, "/", btnWhite, btnTextDark, 13.0F, True)
-
-        ' Right Scientific Pad:
-        ' Row 0: π, Log, Sqrt, x²
-        ConfigureButton(btnPi, "π", btnWhite, btnTextDark, 12.0F, True)
-        ConfigureButton(btnLog, "Log", btnWhite, btnTextDark, 11.5F, True)
-        ConfigureButton(btnSqrt, "Sqrt", btnWhite, btnTextDark, 11.5F, True)
-        ConfigureButton(btnSquare, "x²", btnWhite, btnTextDark, 11.5F, True)
-
-        ' Row 1: DEG/RAD (Sinh pos), Sin, xʸ (Dec pos), x³
-        ConfigureButton(btnDegRad, "DEG", btnWhite, btnTextDark, 11.0F, True)
-        ConfigureButton(btnSin, "Sin", btnWhite, btnTextDark, 11.5F, True)
-        ConfigureButton(btnPower, "xʸ", btnWhite, btnTextDark, 11.5F, True)
-        ConfigureButton(btnCube, "x³", btnWhite, btnTextDark, 11.5F, True)
-
-        ' Row 2: n! (Cosh pos), Cos, e (Bin pos), 1/x
-        ConfigureButton(btnFactorial, "n!", btnWhite, btnTextDark, 11.5F, True)
-        ConfigureButton(btnCos, "Cos", btnWhite, btnTextDark, 11.5F, True)
-        ConfigureButton(btnE, "e", btnWhite, btnTextDark, 12.0F, True)
-        ConfigureButton(btnReciprocal, "1/x", btnWhite, btnTextDark, 11.0F, True)
-
-        ' Row 3: (Tanh pos empty / unused spacer?), Tan, (Hex pos), ln x
-        ' We can place Tan at Col 5, btnLn at Col 7. For Col 4 and Col 6:
-        ' We will place btnLn at Col 7.
-        ConfigureButton(btnTan, "Tan", btnWhite, btnTextDark, 11.5F, True)
-        ConfigureButton(btnLn, "ln x", btnWhite, btnTextDark, 11.0F, True)
-
-        ' Row 4: Exp, Mod (or secondary), (Oct pos), %
-        ConfigureButton(btnExp, "Exp", btnWhite, btnTextDark, 11.5F, True)
-        ConfigureButton(btnPercent, "%", btnWhite, btnTextDark, 12.0F, True)
+        '
+        ' btnDelete
+        '
+        btnDelete.Dock = DockStyle.Fill
+        btnDelete.Font = New Font("Segoe UI", 12.0F, FontStyle.Bold)
+        btnDelete.Margin = New Padding(3)
+        btnDelete.Name = "btnDelete"
+        btnDelete.Text = "⌫"
+        btnDelete.UseVisualStyleBackColor = True
+        '
+        ' btnOpenBracket
+        '
+        btnOpenBracket.Dock = DockStyle.Fill
+        btnOpenBracket.Font = New Font("Segoe UI", 12.0F, FontStyle.Bold)
+        btnOpenBracket.Margin = New Padding(3)
+        btnOpenBracket.Name = "btnOpenBracket"
+        btnOpenBracket.Text = "("
+        btnOpenBracket.UseVisualStyleBackColor = True
+        '
+        ' btnClear
+        '
+        btnClear.Dock = DockStyle.Fill
+        btnClear.Font = New Font("Segoe UI", 12.0F, FontStyle.Bold)
+        btnClear.Margin = New Padding(3)
+        btnClear.Name = "btnClear"
+        btnClear.Text = "C"
+        btnClear.UseVisualStyleBackColor = True
+        '
+        ' btnCloseBracket
+        '
+        btnCloseBracket.Dock = DockStyle.Fill
+        btnCloseBracket.Font = New Font("Segoe UI", 12.0F, FontStyle.Bold)
+        btnCloseBracket.Margin = New Padding(3)
+        btnCloseBracket.Name = "btnCloseBracket"
+        btnCloseBracket.Text = ")"
+        btnCloseBracket.UseVisualStyleBackColor = True
+        '
+        ' btnSeven
+        '
+        btnSeven.Dock = DockStyle.Fill
+        btnSeven.Font = New Font("Segoe UI", 13.0F, FontStyle.Bold)
+        btnSeven.Margin = New Padding(3)
+        btnSeven.Name = "btnSeven"
+        btnSeven.Text = "7"
+        btnSeven.UseVisualStyleBackColor = True
+        '
+        ' btnEight
+        '
+        btnEight.Dock = DockStyle.Fill
+        btnEight.Font = New Font("Segoe UI", 13.0F, FontStyle.Bold)
+        btnEight.Margin = New Padding(3)
+        btnEight.Name = "btnEight"
+        btnEight.Text = "8"
+        btnEight.UseVisualStyleBackColor = True
+        '
+        ' btnNine
+        '
+        btnNine.Dock = DockStyle.Fill
+        btnNine.Font = New Font("Segoe UI", 13.0F, FontStyle.Bold)
+        btnNine.Margin = New Padding(3)
+        btnNine.Name = "btnNine"
+        btnNine.Text = "9"
+        btnNine.UseVisualStyleBackColor = True
+        '
+        ' btnPlus
+        '
+        btnPlus.Dock = DockStyle.Fill
+        btnPlus.Font = New Font("Segoe UI", 13.0F, FontStyle.Bold)
+        btnPlus.Margin = New Padding(3)
+        btnPlus.Name = "btnPlus"
+        btnPlus.Text = "+"
+        btnPlus.UseVisualStyleBackColor = True
+        '
+        ' btnFour
+        '
+        btnFour.Dock = DockStyle.Fill
+        btnFour.Font = New Font("Segoe UI", 13.0F, FontStyle.Bold)
+        btnFour.Margin = New Padding(3)
+        btnFour.Name = "btnFour"
+        btnFour.Text = "4"
+        btnFour.UseVisualStyleBackColor = True
+        '
+        ' btnFive
+        '
+        btnFive.Dock = DockStyle.Fill
+        btnFive.Font = New Font("Segoe UI", 13.0F, FontStyle.Bold)
+        btnFive.Margin = New Padding(3)
+        btnFive.Name = "btnFive"
+        btnFive.Text = "5"
+        btnFive.UseVisualStyleBackColor = True
+        '
+        ' btnSix
+        '
+        btnSix.Dock = DockStyle.Fill
+        btnSix.Font = New Font("Segoe UI", 13.0F, FontStyle.Bold)
+        btnSix.Margin = New Padding(3)
+        btnSix.Name = "btnSix"
+        btnSix.Text = "6"
+        btnSix.UseVisualStyleBackColor = True
+        '
+        ' btnMinus
+        '
+        btnMinus.Dock = DockStyle.Fill
+        btnMinus.Font = New Font("Segoe UI", 14.0F, FontStyle.Bold)
+        btnMinus.Margin = New Padding(3)
+        btnMinus.Name = "btnMinus"
+        btnMinus.Text = "-"
+        btnMinus.UseVisualStyleBackColor = True
+        '
+        ' btnOne
+        '
+        btnOne.Dock = DockStyle.Fill
+        btnOne.Font = New Font("Segoe UI", 13.0F, FontStyle.Bold)
+        btnOne.Margin = New Padding(3)
+        btnOne.Name = "btnOne"
+        btnOne.Text = "1"
+        btnOne.UseVisualStyleBackColor = True
+        '
+        ' btnTwo
+        '
+        btnTwo.Dock = DockStyle.Fill
+        btnTwo.Font = New Font("Segoe UI", 13.0F, FontStyle.Bold)
+        btnTwo.Margin = New Padding(3)
+        btnTwo.Name = "btnTwo"
+        btnTwo.Text = "2"
+        btnTwo.UseVisualStyleBackColor = True
+        '
+        ' btnThree
+        '
+        btnThree.Dock = DockStyle.Fill
+        btnThree.Font = New Font("Segoe UI", 13.0F, FontStyle.Bold)
+        btnThree.Margin = New Padding(3)
+        btnThree.Name = "btnThree"
+        btnThree.Text = "3"
+        btnThree.UseVisualStyleBackColor = True
+        '
+        ' btnMultiply
+        '
+        btnMultiply.Dock = DockStyle.Fill
+        btnMultiply.Font = New Font("Segoe UI", 13.0F, FontStyle.Bold)
+        btnMultiply.Margin = New Padding(3)
+        btnMultiply.Name = "btnMultiply"
+        btnMultiply.Text = "*"
+        btnMultiply.UseVisualStyleBackColor = True
+        '
+        ' btnZero
+        '
+        btnZero.Dock = DockStyle.Fill
+        btnZero.Font = New Font("Segoe UI", 13.0F, FontStyle.Bold)
+        btnZero.Margin = New Padding(3)
+        btnZero.Name = "btnZero"
+        btnZero.Text = "0"
+        btnZero.UseVisualStyleBackColor = True
+        '
+        ' btnDecimal
+        '
+        btnDecimal.Dock = DockStyle.Fill
+        btnDecimal.Font = New Font("Segoe UI", 14.0F, FontStyle.Bold)
+        btnDecimal.Margin = New Padding(3)
+        btnDecimal.Name = "btnDecimal"
+        btnDecimal.Text = "."
+        btnDecimal.UseVisualStyleBackColor = True
+        '
+        ' btnEquals
+        '
+        btnEquals.Dock = DockStyle.Fill
+        btnEquals.Font = New Font("Segoe UI", 13.0F, FontStyle.Bold)
+        btnEquals.Margin = New Padding(3)
+        btnEquals.Name = "btnEquals"
+        btnEquals.Text = "="
+        btnEquals.UseVisualStyleBackColor = True
+        '
+        ' btnDivide
+        '
+        btnDivide.Dock = DockStyle.Fill
+        btnDivide.Font = New Font("Segoe UI", 13.0F, FontStyle.Bold)
+        btnDivide.Margin = New Padding(3)
+        btnDivide.Name = "btnDivide"
+        btnDivide.Text = "/"
+        btnDivide.UseVisualStyleBackColor = True
+        '
+        ' btnPi
+        '
+        btnPi.Dock = DockStyle.Fill
+        btnPi.Font = New Font("Segoe UI", 12.0F, FontStyle.Bold)
+        btnPi.Margin = New Padding(3)
+        btnPi.Name = "btnPi"
+        btnPi.Text = "π"
+        btnPi.UseVisualStyleBackColor = True
+        '
+        ' btnLog
+        '
+        btnLog.Dock = DockStyle.Fill
+        btnLog.Font = New Font("Segoe UI", 11.5F, FontStyle.Bold)
+        btnLog.Margin = New Padding(3)
+        btnLog.Name = "btnLog"
+        btnLog.Text = "Log"
+        btnLog.UseVisualStyleBackColor = True
+        '
+        ' btnSqrt
+        '
+        btnSqrt.Dock = DockStyle.Fill
+        btnSqrt.Font = New Font("Segoe UI", 11.5F, FontStyle.Bold)
+        btnSqrt.Margin = New Padding(3)
+        btnSqrt.Name = "btnSqrt"
+        btnSqrt.Text = "Sqrt"
+        btnSqrt.UseVisualStyleBackColor = True
+        '
+        ' btnSquare
+        '
+        btnSquare.Dock = DockStyle.Fill
+        btnSquare.Font = New Font("Segoe UI", 11.5F, FontStyle.Bold)
+        btnSquare.Margin = New Padding(3)
+        btnSquare.Name = "btnSquare"
+        btnSquare.Text = "x²"
+        btnSquare.UseVisualStyleBackColor = True
+        '
+        ' btnDegRad
+        '
+        btnDegRad.Dock = DockStyle.Fill
+        btnDegRad.Font = New Font("Segoe UI", 11.0F, FontStyle.Bold)
+        btnDegRad.Margin = New Padding(3)
+        btnDegRad.Name = "btnDegRad"
+        btnDegRad.Text = "DEG"
+        btnDegRad.UseVisualStyleBackColor = True
+        '
+        ' btnSin
+        '
+        btnSin.Dock = DockStyle.Fill
+        btnSin.Font = New Font("Segoe UI", 11.5F, FontStyle.Bold)
+        btnSin.Margin = New Padding(3)
+        btnSin.Name = "btnSin"
+        btnSin.Text = "Sin"
+        btnSin.UseVisualStyleBackColor = True
+        '
+        ' btnPower
+        '
+        btnPower.Dock = DockStyle.Fill
+        btnPower.Font = New Font("Segoe UI", 11.5F, FontStyle.Bold)
+        btnPower.Margin = New Padding(3)
+        btnPower.Name = "btnPower"
+        btnPower.Text = "xʸ"
+        btnPower.UseVisualStyleBackColor = True
+        '
+        ' btnCube
+        '
+        btnCube.Dock = DockStyle.Fill
+        btnCube.Font = New Font("Segoe UI", 11.5F, FontStyle.Bold)
+        btnCube.Margin = New Padding(3)
+        btnCube.Name = "btnCube"
+        btnCube.Text = "x³"
+        btnCube.UseVisualStyleBackColor = True
+        '
+        ' btnFactorial
+        '
+        btnFactorial.Dock = DockStyle.Fill
+        btnFactorial.Font = New Font("Segoe UI", 11.5F, FontStyle.Bold)
+        btnFactorial.Margin = New Padding(3)
+        btnFactorial.Name = "btnFactorial"
+        btnFactorial.Text = "n!"
+        btnFactorial.UseVisualStyleBackColor = True
+        '
+        ' btnCos
+        '
+        btnCos.Dock = DockStyle.Fill
+        btnCos.Font = New Font("Segoe UI", 11.5F, FontStyle.Bold)
+        btnCos.Margin = New Padding(3)
+        btnCos.Name = "btnCos"
+        btnCos.Text = "Cos"
+        btnCos.UseVisualStyleBackColor = True
+        '
+        ' btnE
+        '
+        btnE.Dock = DockStyle.Fill
+        btnE.Font = New Font("Segoe UI", 12.0F, FontStyle.Bold)
+        btnE.Margin = New Padding(3)
+        btnE.Name = "btnE"
+        btnE.Text = "e"
+        btnE.UseVisualStyleBackColor = True
+        '
+        ' btnReciprocal
+        '
+        btnReciprocal.Dock = DockStyle.Fill
+        btnReciprocal.Font = New Font("Segoe UI", 11.0F, FontStyle.Bold)
+        btnReciprocal.Margin = New Padding(3)
+        btnReciprocal.Name = "btnReciprocal"
+        btnReciprocal.Text = "1/x"
+        btnReciprocal.UseVisualStyleBackColor = True
+        '
+        ' btnTan
+        '
+        btnTan.Dock = DockStyle.Fill
+        btnTan.Font = New Font("Segoe UI", 11.5F, FontStyle.Bold)
+        btnTan.Margin = New Padding(3)
+        btnTan.Name = "btnTan"
+        btnTan.Text = "Tan"
+        btnTan.UseVisualStyleBackColor = True
+        '
+        ' btnLn
+        '
+        btnLn.Dock = DockStyle.Fill
+        btnLn.Font = New Font("Segoe UI", 11.0F, FontStyle.Bold)
+        btnLn.Margin = New Padding(3)
+        btnLn.Name = "btnLn"
+        btnLn.Text = "ln x"
+        btnLn.UseVisualStyleBackColor = True
+        '
+        ' btnExp
+        '
+        btnExp.Dock = DockStyle.Fill
+        btnExp.Font = New Font("Segoe UI", 11.5F, FontStyle.Bold)
+        btnExp.Margin = New Padding(3)
+        btnExp.Name = "btnExp"
+        btnExp.Text = "Exp"
+        btnExp.UseVisualStyleBackColor = True
+        '
+        ' btnPercent
+        '
+        btnPercent.Dock = DockStyle.Fill
+        btnPercent.Font = New Font("Segoe UI", 12.0F, FontStyle.Bold)
+        btnPercent.Margin = New Padding(3)
+        btnPercent.Name = "btnPercent"
+        btnPercent.Text = "%"
+        btnPercent.UseVisualStyleBackColor = True
 
         ' Add to TableLayoutPanel Grid (8 columns x 5 rows)
         ' Row 0
@@ -277,19 +538,6 @@ Partial Class Form1
         pnlDisplay.ResumeLayout(False)
         pnlDisplay.PerformLayout()
         ResumeLayout(False)
-    End Sub
-
-    Private Sub ConfigureButton(btn As Button, text As String, backColor As Color, foreColor As Color, fontSize As Single, Optional isBold As Boolean = False)
-        btn.Dock = DockStyle.Fill
-        btn.Margin = New Padding(3)
-        btn.Text = text
-        btn.BackColor = backColor
-        btn.ForeColor = foreColor
-        btn.FlatStyle = FlatStyle.Standard
-        btn.Cursor = Cursors.Default
-        Dim style As FontStyle = If(isBold, FontStyle.Bold, FontStyle.Regular)
-        btn.Font = New Font("Segoe UI", fontSize, style)
-        btn.UseVisualStyleBackColor = True
     End Sub
 
     Friend WithEvents pnlDisplay As Panel
