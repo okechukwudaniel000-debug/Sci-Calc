@@ -78,7 +78,7 @@ Partial Class Form1
         ' lblMode
         ' 
         lblMode.AutoSize = True
-        lblMode.Font = New Font("Segoe UI", 9F, FontStyle.Bold)
+        lblMode.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold)
         lblMode.ForeColor = Color.FromArgb(CByte(100), CByte(100), CByte(100))
         lblMode.Location = New Point(12, 8)
         lblMode.Name = "lblMode"
@@ -103,7 +103,7 @@ Partial Class Form1
         ' 
         txtResult.BackColor = Color.White
         txtResult.BorderStyle = BorderStyle.FixedSingle
-        txtResult.Font = New Font("Segoe UI Semibold", 20F, FontStyle.Bold)
+        txtResult.Font = New Font("Segoe UI Semibold", 20.0F, FontStyle.Bold)
         txtResult.ForeColor = Color.Black
         txtResult.Location = New Point(12, 77)
         txtResult.Name = "txtResult"
@@ -166,18 +166,18 @@ Partial Class Form1
         pnlKeypad.Name = "pnlKeypad"
         pnlKeypad.Padding = New Padding(10, 8, 10, 10)
         pnlKeypad.RowCount = 5
-        pnlKeypad.RowStyles.Add(New RowStyle(SizeType.Percent, 20F))
-        pnlKeypad.RowStyles.Add(New RowStyle(SizeType.Percent, 20F))
-        pnlKeypad.RowStyles.Add(New RowStyle(SizeType.Percent, 20F))
-        pnlKeypad.RowStyles.Add(New RowStyle(SizeType.Percent, 20F))
-        pnlKeypad.RowStyles.Add(New RowStyle(SizeType.Percent, 20F))
+        pnlKeypad.RowStyles.Add(New RowStyle(SizeType.Percent, 20.0F))
+        pnlKeypad.RowStyles.Add(New RowStyle(SizeType.Percent, 20.0F))
+        pnlKeypad.RowStyles.Add(New RowStyle(SizeType.Percent, 20.0F))
+        pnlKeypad.RowStyles.Add(New RowStyle(SizeType.Percent, 20.0F))
+        pnlKeypad.RowStyles.Add(New RowStyle(SizeType.Percent, 20.0F))
         pnlKeypad.Size = New Size(540, 319)
         pnlKeypad.TabIndex = 1
         ' 
         ' btnDelete
         ' 
         btnDelete.Dock = DockStyle.Fill
-        btnDelete.Font = New Font("Segoe UI", 12F, FontStyle.Bold)
+        btnDelete.Font = New Font("Segoe UI", 12.0F, FontStyle.Bold)
         btnDelete.Location = New Point(13, 11)
         btnDelete.Name = "btnDelete"
         btnDelete.Size = New Size(59, 54)
@@ -188,7 +188,7 @@ Partial Class Form1
         ' btnOpenBracket
         ' 
         btnOpenBracket.Dock = DockStyle.Fill
-        btnOpenBracket.Font = New Font("Segoe UI", 12F, FontStyle.Bold)
+        btnOpenBracket.Font = New Font("Segoe UI", 12.0F, FontStyle.Bold)
         btnOpenBracket.Location = New Point(78, 11)
         btnOpenBracket.Name = "btnOpenBracket"
         btnOpenBracket.Size = New Size(59, 54)
@@ -199,7 +199,7 @@ Partial Class Form1
         ' btnClear
         ' 
         btnClear.Dock = DockStyle.Fill
-        btnClear.Font = New Font("Segoe UI", 12F, FontStyle.Bold)
+        btnClear.Font = New Font("Segoe UI", 12.0F, FontStyle.Bold)
         btnClear.Location = New Point(143, 11)
         btnClear.Name = "btnClear"
         btnClear.Size = New Size(59, 54)
@@ -210,7 +210,7 @@ Partial Class Form1
         ' btnCloseBracket
         ' 
         btnCloseBracket.Dock = DockStyle.Fill
-        btnCloseBracket.Font = New Font("Segoe UI", 12F, FontStyle.Bold)
+        btnCloseBracket.Font = New Font("Segoe UI", 12.0F, FontStyle.Bold)
         btnCloseBracket.Location = New Point(208, 11)
         btnCloseBracket.Name = "btnCloseBracket"
         btnCloseBracket.Size = New Size(59, 54)
@@ -221,7 +221,7 @@ Partial Class Form1
         ' btnPi
         ' 
         btnPi.Dock = DockStyle.Fill
-        btnPi.Font = New Font("Segoe UI", 12F, FontStyle.Bold)
+        btnPi.Font = New Font("Segoe UI", 12.0F, FontStyle.Bold)
         btnPi.Location = New Point(273, 11)
         btnPi.Name = "btnPi"
         btnPi.Size = New Size(59, 54)
@@ -265,7 +265,7 @@ Partial Class Form1
         ' btnSeven
         ' 
         btnSeven.Dock = DockStyle.Fill
-        btnSeven.Font = New Font("Segoe UI", 13F, FontStyle.Bold)
+        btnSeven.Font = New Font("Segoe UI", 13.0F, FontStyle.Bold)
         btnSeven.Location = New Point(13, 71)
         btnSeven.Name = "btnSeven"
         btnSeven.Size = New Size(59, 54)
@@ -276,7 +276,7 @@ Partial Class Form1
         ' btnEight
         ' 
         btnEight.Dock = DockStyle.Fill
-        btnEight.Font = New Font("Segoe UI", 13F, FontStyle.Bold)
+        btnEight.Font = New Font("Segoe UI", 13.0F, FontStyle.Bold)
         btnEight.Location = New Point(78, 71)
         btnEight.Name = "btnEight"
         btnEight.Size = New Size(59, 54)
@@ -287,7 +287,7 @@ Partial Class Form1
         ' btnNine
         ' 
         btnNine.Dock = DockStyle.Fill
-        btnNine.Font = New Font("Segoe UI", 13F, FontStyle.Bold)
+        btnNine.Font = New Font("Segoe UI", 13.0F, FontStyle.Bold)
         btnNine.Location = New Point(143, 71)
         btnNine.Name = "btnNine"
         btnNine.Size = New Size(59, 54)
@@ -298,7 +298,7 @@ Partial Class Form1
         ' btnPlus
         ' 
         btnPlus.Dock = DockStyle.Fill
-        btnPlus.Font = New Font("Segoe UI", 13F, FontStyle.Bold)
+        btnPlus.Font = New Font("Segoe UI", 13.0F, FontStyle.Bold)
         btnPlus.Location = New Point(208, 71)
         btnPlus.Name = "btnPlus"
         btnPlus.Size = New Size(59, 54)
@@ -309,7 +309,7 @@ Partial Class Form1
         ' btnDegRad
         ' 
         btnDegRad.Dock = DockStyle.Fill
-        btnDegRad.Font = New Font("Segoe UI", 11F, FontStyle.Bold)
+        btnDegRad.Font = New Font("Segoe UI", 11.0F, FontStyle.Bold)
         btnDegRad.Location = New Point(273, 71)
         btnDegRad.Name = "btnDegRad"
         btnDegRad.Size = New Size(59, 54)
@@ -353,7 +353,7 @@ Partial Class Form1
         ' btnFour
         ' 
         btnFour.Dock = DockStyle.Fill
-        btnFour.Font = New Font("Segoe UI", 13F, FontStyle.Bold)
+        btnFour.Font = New Font("Segoe UI", 13.0F, FontStyle.Bold)
         btnFour.Location = New Point(13, 131)
         btnFour.Name = "btnFour"
         btnFour.Size = New Size(59, 54)
@@ -364,7 +364,7 @@ Partial Class Form1
         ' btnFive
         ' 
         btnFive.Dock = DockStyle.Fill
-        btnFive.Font = New Font("Segoe UI", 13F, FontStyle.Bold)
+        btnFive.Font = New Font("Segoe UI", 13.0F, FontStyle.Bold)
         btnFive.Location = New Point(78, 131)
         btnFive.Name = "btnFive"
         btnFive.Size = New Size(59, 54)
@@ -375,7 +375,7 @@ Partial Class Form1
         ' btnSix
         ' 
         btnSix.Dock = DockStyle.Fill
-        btnSix.Font = New Font("Segoe UI", 13F, FontStyle.Bold)
+        btnSix.Font = New Font("Segoe UI", 13.0F, FontStyle.Bold)
         btnSix.Location = New Point(143, 131)
         btnSix.Name = "btnSix"
         btnSix.Size = New Size(59, 54)
@@ -386,7 +386,7 @@ Partial Class Form1
         ' btnMinus
         ' 
         btnMinus.Dock = DockStyle.Fill
-        btnMinus.Font = New Font("Segoe UI", 14F, FontStyle.Bold)
+        btnMinus.Font = New Font("Segoe UI", 14.0F, FontStyle.Bold)
         btnMinus.Location = New Point(208, 131)
         btnMinus.Name = "btnMinus"
         btnMinus.Size = New Size(59, 54)
@@ -419,7 +419,7 @@ Partial Class Form1
         ' btnE
         ' 
         btnE.Dock = DockStyle.Fill
-        btnE.Font = New Font("Segoe UI", 12F, FontStyle.Bold)
+        btnE.Font = New Font("Segoe UI", 12.0F, FontStyle.Bold)
         btnE.Location = New Point(403, 131)
         btnE.Name = "btnE"
         btnE.Size = New Size(59, 54)
@@ -430,7 +430,7 @@ Partial Class Form1
         ' btnReciprocal
         ' 
         btnReciprocal.Dock = DockStyle.Fill
-        btnReciprocal.Font = New Font("Segoe UI", 11F, FontStyle.Bold)
+        btnReciprocal.Font = New Font("Segoe UI", 11.0F, FontStyle.Bold)
         btnReciprocal.Location = New Point(468, 131)
         btnReciprocal.Name = "btnReciprocal"
         btnReciprocal.Size = New Size(59, 54)
@@ -441,7 +441,7 @@ Partial Class Form1
         ' btnOne
         ' 
         btnOne.Dock = DockStyle.Fill
-        btnOne.Font = New Font("Segoe UI", 13F, FontStyle.Bold)
+        btnOne.Font = New Font("Segoe UI", 13.0F, FontStyle.Bold)
         btnOne.Location = New Point(13, 191)
         btnOne.Name = "btnOne"
         btnOne.Size = New Size(59, 54)
@@ -452,7 +452,7 @@ Partial Class Form1
         ' btnTwo
         ' 
         btnTwo.Dock = DockStyle.Fill
-        btnTwo.Font = New Font("Segoe UI", 13F, FontStyle.Bold)
+        btnTwo.Font = New Font("Segoe UI", 13.0F, FontStyle.Bold)
         btnTwo.Location = New Point(78, 191)
         btnTwo.Name = "btnTwo"
         btnTwo.Size = New Size(59, 54)
@@ -463,7 +463,7 @@ Partial Class Form1
         ' btnThree
         ' 
         btnThree.Dock = DockStyle.Fill
-        btnThree.Font = New Font("Segoe UI", 13F, FontStyle.Bold)
+        btnThree.Font = New Font("Segoe UI", 13.0F, FontStyle.Bold)
         btnThree.Location = New Point(143, 191)
         btnThree.Name = "btnThree"
         btnThree.Size = New Size(59, 54)
@@ -474,7 +474,7 @@ Partial Class Form1
         ' btnMultiply
         ' 
         btnMultiply.Dock = DockStyle.Fill
-        btnMultiply.Font = New Font("Segoe UI", 13F, FontStyle.Bold)
+        btnMultiply.Font = New Font("Segoe UI", 13.0F, FontStyle.Bold)
         btnMultiply.Location = New Point(208, 191)
         btnMultiply.Name = "btnMultiply"
         btnMultiply.Size = New Size(59, 54)
@@ -496,7 +496,7 @@ Partial Class Form1
         ' btnLn
         ' 
         btnLn.Dock = DockStyle.Fill
-        btnLn.Font = New Font("Segoe UI", 11F, FontStyle.Bold)
+        btnLn.Font = New Font("Segoe UI", 11.0F, FontStyle.Bold)
         btnLn.Location = New Point(468, 191)
         btnLn.Name = "btnLn"
         btnLn.Size = New Size(59, 54)
@@ -507,7 +507,7 @@ Partial Class Form1
         ' btnZero
         ' 
         btnZero.Dock = DockStyle.Fill
-        btnZero.Font = New Font("Segoe UI", 13F, FontStyle.Bold)
+        btnZero.Font = New Font("Segoe UI", 13.0F, FontStyle.Bold)
         btnZero.Location = New Point(13, 251)
         btnZero.Name = "btnZero"
         btnZero.Size = New Size(59, 55)
@@ -518,7 +518,7 @@ Partial Class Form1
         ' btnDecimal
         ' 
         btnDecimal.Dock = DockStyle.Fill
-        btnDecimal.Font = New Font("Segoe UI", 14F, FontStyle.Bold)
+        btnDecimal.Font = New Font("Segoe UI", 14.0F, FontStyle.Bold)
         btnDecimal.Location = New Point(78, 251)
         btnDecimal.Name = "btnDecimal"
         btnDecimal.Size = New Size(59, 55)
@@ -529,7 +529,7 @@ Partial Class Form1
         ' btnEquals
         ' 
         btnEquals.Dock = DockStyle.Fill
-        btnEquals.Font = New Font("Segoe UI", 13F, FontStyle.Bold)
+        btnEquals.Font = New Font("Segoe UI", 13.0F, FontStyle.Bold)
         btnEquals.Location = New Point(143, 251)
         btnEquals.Name = "btnEquals"
         btnEquals.Size = New Size(59, 55)
@@ -540,7 +540,7 @@ Partial Class Form1
         ' btnDivide
         ' 
         btnDivide.Dock = DockStyle.Fill
-        btnDivide.Font = New Font("Segoe UI", 13F, FontStyle.Bold)
+        btnDivide.Font = New Font("Segoe UI", 13.0F, FontStyle.Bold)
         btnDivide.Location = New Point(208, 251)
         btnDivide.Name = "btnDivide"
         btnDivide.Size = New Size(59, 55)
@@ -562,7 +562,7 @@ Partial Class Form1
         ' btnPercent
         ' 
         btnPercent.Dock = DockStyle.Fill
-        btnPercent.Font = New Font("Segoe UI", 12F, FontStyle.Bold)
+        btnPercent.Font = New Font("Segoe UI", 12.0F, FontStyle.Bold)
         btnPercent.Location = New Point(468, 251)
         btnPercent.Name = "btnPercent"
         btnPercent.Size = New Size(59, 55)
@@ -572,7 +572,7 @@ Partial Class Form1
         ' 
         ' Form1
         ' 
-        AutoScaleDimensions = New SizeF(8F, 20F)
+        AutoScaleDimensions = New SizeF(8.0F, 20.0F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.FromArgb(CByte(242), CByte(243), CByte(245))
         ClientSize = New Size(540, 480)
