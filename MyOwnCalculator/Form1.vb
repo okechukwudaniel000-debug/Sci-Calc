@@ -303,16 +303,18 @@ Public Class Form1
         End If
 
         Try
-            Dim rawExpression As String = txtResult.Text
+            Dim rawExpression As String = txtResult.Text.Trim()
 
-            ' Auto-close open parentheses
-            Dim openCount As Integer = rawExpression.Count(Function(c) c = "("c)
-            Dim closeCount As Integer = rawExpression.Count(Function(c) c = ")"c)
-            If openCount > closeCount Then
-                rawExpression &= New String(")"c, openCount - closeCount)
+            ' Validate parentheses balance
+            Dim unclosedCount As Integer = CheckParenthesesBalance(rawExpression)
+
+            ' If there are unclosed brackets (e.g., (5 + 3 * 2), auto-complete them
+            If unclosedCount > 0 Then
+                Dim autoCompletedBrackets As String = New String(")"c, unclosedCount)
+                rawExpression &= autoCompletedBrackets
             End If
 
-            ' Display the full expression in txtExpression
+            ' Display the completed expression in txtExpression
             txtExpression.Text = rawExpression & " ="
 
             ' Standardize characters for evaluation
@@ -393,6 +395,25 @@ Public Class Form1
         Else
             Return value.ToString("E6", CultureInfo.InvariantCulture)
         End If
+    End Function
+
+    ''' <summary>
+    ''' Inspects the expression and returns the count of missing closing brackets,
+    ''' or throws InvalidOperationException if closing brackets appear before opening ones.
+    ''' </summary>
+    Private Function CheckParenthesesBalance(expr As String) As Integer
+        Dim depth As Integer = 0
+        For i As Integer = 0 To expr.Length - 1
+            If expr(i) = "("c Then
+                depth += 1
+            ElseIf expr(i) = ")"c Then
+                depth -= 1
+                If depth < 0 Then
+                    Throw New InvalidOperationException("Mismatched parentheses: unexpected ')'")
+                End If
+            End If
+        Next
+        Return depth
     End Function
 
     Private Function IsOperator(c As Char) As Boolean
