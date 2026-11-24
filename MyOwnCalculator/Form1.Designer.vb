@@ -19,9 +19,14 @@ Partial Class Form1
     Private Sub InitializeComponent()
         pnlDisplay = New Panel()
         lblMode = New Label()
+        btnHistory = New Button()
         txtExpression = New TextBox()
         txtResult = New TextBox()
         pnlKeypad = New TableLayoutPanel()
+        pnlHistory = New Panel()
+        lblHistoryHeader = New Label()
+        btnClearHistory = New Button()
+        lstHistory = New ListBox()
         btnDelete = New Button()
         btnOpenBracket = New Button()
         btnClear = New Button()
@@ -65,6 +70,7 @@ Partial Class Form1
         ' pnlDisplay
         ' 
         pnlDisplay.BackColor = Color.White
+        pnlDisplay.Controls.Add(btnHistory)
         pnlDisplay.Controls.Add(lblMode)
         pnlDisplay.Controls.Add(txtExpression)
         pnlDisplay.Controls.Add(txtResult)
@@ -86,21 +92,39 @@ Partial Class Form1
         lblMode.TabIndex = 0
         lblMode.Text = "DEG"
         ' 
+        ' btnHistory
+        ' 
+        btnHistory.Anchor = AnchorStyles.Top Or AnchorStyles.Right
+        btnHistory.BackColor = Color.White
+        btnHistory.Cursor = Cursors.Hand
+        btnHistory.FlatStyle = FlatStyle.Flat
+        btnHistory.Font = New Font("Segoe UI", 8.5F, FontStyle.Regular)
+        btnHistory.ForeColor = Color.FromArgb(CByte(90), CByte(90), CByte(90))
+        btnHistory.Location = New Point(445, 6)
+        btnHistory.Margin = New Padding(0)
+        btnHistory.Name = "btnHistory"
+        btnHistory.Size = New Size(83, 26)
+        btnHistory.TabIndex = 3
+        btnHistory.Text = "🕒 History"
+        btnHistory.UseVisualStyleBackColor = True
+        ' 
         ' txtExpression
         ' 
+        txtExpression.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         txtExpression.BackColor = Color.White
         txtExpression.BorderStyle = BorderStyle.None
         txtExpression.Font = New Font("Segoe UI", 10.5F)
         txtExpression.ForeColor = Color.FromArgb(CByte(120), CByte(120), CByte(120))
-        txtExpression.Location = New Point(60, 8)
+        txtExpression.Location = New Point(58, 8)
         txtExpression.Name = "txtExpression"
         txtExpression.ReadOnly = True
-        txtExpression.Size = New Size(465, 24)
+        txtExpression.Size = New Size(380, 24)
         txtExpression.TabIndex = 1
         txtExpression.TextAlign = HorizontalAlignment.Right
         ' 
         ' txtResult
         ' 
+        txtResult.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         txtResult.BackColor = Color.White
         txtResult.BorderStyle = BorderStyle.FixedSingle
         txtResult.Font = New Font("Segoe UI Semibold", 20.0F, FontStyle.Bold)
@@ -570,6 +594,59 @@ Partial Class Form1
         btnPercent.Text = "%"
         btnPercent.UseVisualStyleBackColor = True
         ' 
+        ' pnlHistory
+        ' 
+        pnlHistory.BackColor = Color.FromArgb(CByte(248), CByte(249), CByte(250))
+        pnlHistory.Controls.Add(lstHistory)
+        pnlHistory.Controls.Add(lblHistoryHeader)
+        pnlHistory.Controls.Add(btnClearHistory)
+        pnlHistory.Dock = DockStyle.Right
+        pnlHistory.Location = New Point(540, 161)
+        pnlHistory.Name = "pnlHistory"
+        pnlHistory.Padding = New Padding(8)
+        pnlHistory.Size = New Size(240, 319)
+        pnlHistory.TabIndex = 2
+        pnlHistory.Visible = False
+        ' 
+        ' lblHistoryHeader
+        ' 
+        lblHistoryHeader.Dock = DockStyle.Top
+        lblHistoryHeader.Font = New Font("Segoe UI Semibold", 9.5F, FontStyle.Bold)
+        lblHistoryHeader.ForeColor = Color.FromArgb(CByte(70), CByte(70), CByte(70))
+        lblHistoryHeader.Location = New Point(8, 8)
+        lblHistoryHeader.Name = "lblHistoryHeader"
+        lblHistoryHeader.Size = New Size(224, 25)
+        lblHistoryHeader.TabIndex = 0
+        lblHistoryHeader.Text = "History"
+        ' 
+        ' btnClearHistory
+        ' 
+        btnClearHistory.Dock = DockStyle.Bottom
+        btnClearHistory.FlatStyle = FlatStyle.Flat
+        btnClearHistory.Font = New Font("Segoe UI", 9.0F)
+        btnClearHistory.ForeColor = Color.FromArgb(CByte(100), CByte(100), CByte(100))
+        btnClearHistory.Location = New Point(8, 281)
+        btnClearHistory.Name = "btnClearHistory"
+        btnClearHistory.Size = New Size(224, 30)
+        btnClearHistory.TabIndex = 1
+        btnClearHistory.Text = "🗑 Clear History"
+        btnClearHistory.UseVisualStyleBackColor = True
+        ' 
+        ' lstHistory
+        ' 
+        lstHistory.BorderStyle = BorderStyle.None
+        lstHistory.Cursor = Cursors.Hand
+        lstHistory.Dock = DockStyle.Fill
+        lstHistory.DrawMode = DrawMode.OwnerDrawVariable
+        lstHistory.Font = New Font("Segoe UI", 9.5F)
+        lstHistory.FormattingEnabled = True
+        lstHistory.IntegralHeight = False
+        lstHistory.ItemHeight = 44
+        lstHistory.Location = New Point(8, 33)
+        lstHistory.Name = "lstHistory"
+        lstHistory.Size = New Size(224, 248)
+        lstHistory.TabIndex = 2
+        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(8.0F, 20.0F)
@@ -577,6 +654,7 @@ Partial Class Form1
         BackColor = Color.FromArgb(CByte(242), CByte(243), CByte(245))
         ClientSize = New Size(540, 480)
         Controls.Add(pnlKeypad)
+        Controls.Add(pnlHistory)
         Controls.Add(pnlDisplay)
         FormBorderStyle = FormBorderStyle.FixedDialog
         KeyPreview = True
@@ -587,14 +665,20 @@ Partial Class Form1
         pnlDisplay.ResumeLayout(False)
         pnlDisplay.PerformLayout()
         pnlKeypad.ResumeLayout(False)
+        pnlHistory.ResumeLayout(False)
         ResumeLayout(False)
     End Sub
 
     Friend WithEvents pnlDisplay As Panel
     Friend WithEvents lblMode As Label
+    Friend WithEvents btnHistory As Button
     Friend WithEvents txtExpression As TextBox
     Friend WithEvents txtResult As TextBox
     Friend WithEvents pnlKeypad As TableLayoutPanel
+    Friend WithEvents pnlHistory As Panel
+    Friend WithEvents lblHistoryHeader As Label
+    Friend WithEvents btnClearHistory As Button
+    Friend WithEvents lstHistory As ListBox
 
     Friend WithEvents btnDegRad As Button
     Friend WithEvents btnSquare As Button

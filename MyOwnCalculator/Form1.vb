@@ -325,10 +325,12 @@ Public Class Form1
             If Double.IsNaN(result) OrElse Double.IsInfinity(result) Then
                 DisplayError("Invalid operation")
             Else
-                txtResult.Text = FormatResult(result)
+                Dim formattedResult As String = FormatResult(result)
+                txtResult.Text = formattedResult
                 txtResult.ForeColor = Color.Black
                 isResultDisplayed = True
                 isErrorDisplayed = False
+                AddHistoryItem(rawExpression, formattedResult)
             End If
         Catch ex As DivideByZeroException
             DisplayError("Cannot divide by zero")
@@ -492,6 +494,10 @@ Public Class Form1
             Case Keys.Control Or Keys.D
                 btnDegRad.PerformClick()
                 Return True
+
+            Case Keys.Control Or Keys.H
+                btnHistory.PerformClick()
+                Return True
         End Select
 
         Return MyBase.ProcessCmdKey(msg, keyData)
@@ -597,6 +603,120 @@ Public Class Form1
                 btnE.PerformClick()
                 e.Handled = True
         End Select
+    End Sub
+
+#End Region
+
+#Region "Calculation History"
+
+    ''' <summary>
+    ''' Represents a single calculation record in history.
+    ''' </summary>
+    Public Class CalculationHistoryItem
+        Public Property Expression As String
+        Public Property Result As String
+
+        Public Sub New(expr As String, res As String)
+            Expression = expr
+            Result = res
+        End Sub
+
+        Public Overrides Function ToString() As String
+            Return $"{Expression} = {Result}"
+        End Function
+    End Class
+
+    ''' <summary>
+    ''' Toggles the collapsible history drawer.
+    ''' </summary>
+    Private Sub HistoryButton_Click(sender As Object, e As EventArgs) Handles btnHistory.Click
+        pnlHistory.Visible = Not pnlHistory.Visible
+        If pnlHistory.Visible Then
+            ClientSize = New Size(540 + pnlHistory.Width, ClientSize.Height)
+            btnHistory.BackColor = Color.FromArgb(230, 240, 255)
+            btnHistory.ForeColor = Color.FromArgb(0, 120, 215)
+        Else
+            ClientSize = New Size(540, ClientSize.Height)
+            btnHistory.BackColor = Color.White
+            btnHistory.ForeColor = Color.FromArgb(90, 90, 90)
+        End If
+    End Sub
+
+    ''' <summary>
+    ''' Clears all calculation history entries.
+    ''' </summary>
+    Private Sub ClearHistoryButton_Click(sender As Object, e As EventArgs) Handles btnClearHistory.Click
+        lstHistory.Items.Clear()
+    End Sub
+
+    ''' <summary>
+    ''' Re-inserts the clicked past calculation result into the calculator input.
+    ''' </summary>
+    Private Sub HistoryList_Click(sender As Object, e As EventArgs) Handles lstHistory.Click
+        Dim selectedItem As CalculationHistoryItem = TryCast(lstHistory.SelectedItem, CalculationHistoryItem)
+        If selectedItem IsNot Nothing Then
+            Dim selectedResult As String = selectedItem.Result
+
+            If isResultDisplayed OrElse IsErrorState() OrElse txtResult.Text = "0" Then
+                ResetDisplayForNewInput(selectedResult)
+            Else
+                Dim currentText As String = txtResult.Text
+                Dim lastChar As Char = currentText(currentText.Length - 1)
+
+                If IsOperator(lastChar) OrElse lastChar = "("c Then
+                    txtResult.AppendText(selectedResult)
+                Else
+                    txtResult.AppendText("×" & selectedResult)
+                End If
+            End If
+            txtExpression.Text = selectedItem.Expression & " ="
+        End If
+    End Sub
+
+    ''' <summary>
+    ''' Custom owner-draw rendering for modern, readable two-line history items (Expression + Result).
+    ''' </summary>
+    Private Sub HistoryList_DrawItem(sender As Object, e As DrawItemEventArgs) Handles lstHistory.DrawItem
+        If e.Index < 0 OrElse e.Index >= lstHistory.Items.Count Then Return
+
+        Dim item As CalculationHistoryItem = TryCast(lstHistory.Items(e.Index), CalculationHistoryItem)
+        If item Is Nothing Then Return
+
+        Dim isSelected As Boolean = (e.State And DrawItemState.Selected) = DrawItemState.Selected
+        Dim backBrush As Brush = If(isSelected, New SolidBrush(Color.FromArgb(230, 240, 255)), New SolidBrush(Color.White))
+        e.Graphics.FillRectangle(backBrush, e.Bounds)
+
+        ' Draw subtle bottom border line between items
+        Using penLine As New Pen(Color.FromArgb(240, 240, 240))
+            e.Graphics.DrawLine(penLine, e.Bounds.Left, e.Bounds.Bottom - 1, e.Bounds.Right, e.Bounds.Bottom - 1)
+        End Using
+
+        ' Top line: expression in gray
+        Using exprFont As New Font("Segoe UI", 8.5F, FontStyle.Regular),
+              exprBrush As New SolidBrush(Color.FromArgb(120, 120, 120))
+            Dim exprRect As New Rectangle(e.Bounds.Left + 8, e.Bounds.Top + 4, e.Bounds.Width - 16, 16)
+            Dim sf As New StringFormat() With {.Alignment = StringAlignment.Far}
+            e.Graphics.DrawString(item.Expression & " =", exprFont, exprBrush, exprRect, sf)
+        End Using
+
+        ' Bottom line: result in bold black
+        Using resFont As New Font("Segoe UI Semibold", 11.0F, FontStyle.Bold),
+              resBrush As New SolidBrush(If(isSelected, Color.FromArgb(0, 120, 215), Color.Black))
+            Dim resRect As New Rectangle(e.Bounds.Left + 8, e.Bounds.Top + 20, e.Bounds.Width - 16, 22)
+            Dim sf As New StringFormat() With {.Alignment = StringAlignment.Far}
+            e.Graphics.DrawString(item.Result, resFont, resBrush, resRect, sf)
+        End Using
+
+        backBrush.Dispose()
+    End Sub
+
+    Private Sub HistoryList_MeasureItem(sender As Object, e As MeasureItemEventArgs) Handles lstHistory.MeasureItem
+        e.ItemHeight = 46
+    End Sub
+
+    Private Sub AddHistoryItem(expression As String, result As String)
+        Dim item As New CalculationHistoryItem(expression, result)
+        lstHistory.Items.Insert(0, item)
     End Sub
 
 #End Region
