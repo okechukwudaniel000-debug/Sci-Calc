@@ -17,6 +17,11 @@ Public Class Form1
     ''' </summary>
     Private isResultDisplayed As Boolean = False
 
+    ''' <summary>
+    ''' Flag indicating whether the current text in txtResult represents an error/status message.
+    ''' </summary>
+    Private isErrorDisplayed As Boolean = False
+
 #Region "Event Handlers - Angle Mode"
 
     ''' <summary>
@@ -404,6 +409,26 @@ Public Class Form1
     Private Function IsOperator(c As Char) As Boolean
         Return "+-*/^×÷−".Contains(c)
     End Function
+
+    Private Function IsErrorState() As Boolean
+        Return isErrorDisplayed OrElse txtResult.Text.StartsWith("Error")
+    End Function
+
+    Private Sub ResetDisplayForNewInput(Optional initialText As String = "")
+        isResultDisplayed = False
+        isErrorDisplayed = False
+        txtResult.ForeColor = Color.Black
+        If Not String.IsNullOrEmpty(initialText) Then
+            txtResult.Text = initialText
+        End If
+    End Sub
+
+    Private Sub DisplayError(message As String)
+        txtResult.Text = message
+        txtResult.ForeColor = Color.FromArgb(215, 38, 56)
+        isResultDisplayed = True
+        isErrorDisplayed = True
+    End Sub
 
 #End Region
 
