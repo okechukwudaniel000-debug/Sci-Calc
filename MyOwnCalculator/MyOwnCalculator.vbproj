@@ -18,6 +18,8 @@
     <Compile Update="Form1.vb" />
     <Compile Update="Form1.Designer.vb">
       <DependentUpon>Form1.vb</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <EmbeddedResource Update="Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
