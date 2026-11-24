@@ -18,7 +18,7 @@ Imports System.Reflection
  Assembly: System.Reflection.AssemblyDescriptionAttribute("High-precision Scientific Calculator with Trigonometry, Exponentiation, History, "& _ 
     "and Memory Registers."),  _
  Assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0"),  _
- Assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ed9eb410a0f73b3e620c69efe71b9215a7708b5e"),  _
+ Assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5a1c90c846e681363fb7bbdb3e17c2fc6f52fe22"),  _
  Assembly: System.Reflection.AssemblyProductAttribute("MyOwnCalculator"),  _
  Assembly: System.Reflection.AssemblyTitleAttribute("MyOwnCalculator"),  _
  Assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0"),  _
