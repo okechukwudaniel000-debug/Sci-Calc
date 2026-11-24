@@ -6,7 +6,25 @@
     <StartupObject>Sub Main</StartupObject>
     <UseWindowsForms>true</UseWindowsForms>
     <MyType>WindowsForms</MyType>
+
+    <!-- Application Metadata & Branding -->
+    <ApplicationIcon>app.ico</ApplicationIcon>
+    <Title>Scientific Calculator</Title>
+    <Product>MyOwnCalculator</Product>
+    <Description>High-precision Scientific Calculator with Trigonometry, Exponentiation, History, and Memory Registers.</Description>
+    <Company>Danev</Company>
+    <Authors>Daniel O.</Authors>
+    <Copyright>Copyright © 2026</Copyright>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <Version>1.0.0</Version>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="app.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 
   <ItemGroup>
     <Import Include="System.Data" />
