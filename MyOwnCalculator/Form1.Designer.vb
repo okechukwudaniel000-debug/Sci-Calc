@@ -22,6 +22,12 @@ Partial Class Form1
         btnHistory = New Button()
         txtExpression = New TextBox()
         txtResult = New TextBox()
+        pnlMemory = New FlowLayoutPanel()
+        btnMC = New Button()
+        btnMR = New Button()
+        btnMPlus = New Button()
+        btnMMinus = New Button()
+        lblMemoryStatus = New Label()
         pnlKeypad = New TableLayoutPanel()
         pnlHistory = New Panel()
         lblHistoryHeader = New Label()
@@ -74,10 +80,11 @@ Partial Class Form1
         pnlDisplay.Controls.Add(lblMode)
         pnlDisplay.Controls.Add(txtExpression)
         pnlDisplay.Controls.Add(txtResult)
+        pnlDisplay.Controls.Add(pnlMemory)
         pnlDisplay.Dock = DockStyle.Top
         pnlDisplay.Location = New Point(0, 0)
         pnlDisplay.Name = "pnlDisplay"
-        pnlDisplay.Padding = New Padding(12, 10, 12, 8)
+        pnlDisplay.Padding = New Padding(12, 8, 12, 6)
         pnlDisplay.Size = New Size(540, 161)
         pnlDisplay.TabIndex = 0
         ' 
@@ -129,13 +136,101 @@ Partial Class Form1
         txtResult.BorderStyle = BorderStyle.FixedSingle
         txtResult.Font = New Font("Segoe UI Semibold", 20.0F, FontStyle.Bold)
         txtResult.ForeColor = Color.Black
-        txtResult.Location = New Point(12, 77)
+        txtResult.Location = New Point(12, 70)
         txtResult.Name = "txtResult"
         txtResult.ReadOnly = True
         txtResult.Size = New Size(516, 52)
         txtResult.TabIndex = 2
         txtResult.Text = "0"
         txtResult.TextAlign = HorizontalAlignment.Right
+        ' 
+        ' pnlMemory
+        ' 
+        pnlMemory.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+        pnlMemory.BackColor = Color.White
+        pnlMemory.Controls.Add(btnMC)
+        pnlMemory.Controls.Add(btnMR)
+        pnlMemory.Controls.Add(btnMPlus)
+        pnlMemory.Controls.Add(btnMMinus)
+        pnlMemory.Controls.Add(lblMemoryStatus)
+        pnlMemory.Location = New Point(12, 126)
+        pnlMemory.Margin = New Padding(0)
+        pnlMemory.Name = "pnlMemory"
+        pnlMemory.Size = New Size(516, 28)
+        pnlMemory.TabIndex = 4
+        ' 
+        ' btnMC
+        ' 
+        btnMC.Cursor = Cursors.Hand
+        btnMC.Enabled = False
+        btnMC.FlatAppearance.BorderSize = 0
+        btnMC.FlatStyle = FlatStyle.Flat
+        btnMC.Font = New Font("Segoe UI Semibold", 8.5F, FontStyle.Bold)
+        btnMC.ForeColor = Color.FromArgb(CByte(120), CByte(120), CByte(120))
+        btnMC.Location = New Point(0, 0)
+        btnMC.Margin = New Padding(0, 0, 4, 0)
+        btnMC.Name = "btnMC"
+        btnMC.Size = New Size(42, 26)
+        btnMC.TabIndex = 0
+        btnMC.Text = "MC"
+        btnMC.UseVisualStyleBackColor = True
+        ' 
+        ' btnMR
+        ' 
+        btnMR.Cursor = Cursors.Hand
+        btnMR.Enabled = False
+        btnMR.FlatAppearance.BorderSize = 0
+        btnMR.FlatStyle = FlatStyle.Flat
+        btnMR.Font = New Font("Segoe UI Semibold", 8.5F, FontStyle.Bold)
+        btnMR.ForeColor = Color.FromArgb(CByte(120), CByte(120), CByte(120))
+        btnMR.Location = New Point(46, 0)
+        btnMR.Margin = New Padding(0, 0, 4, 0)
+        btnMR.Name = "btnMR"
+        btnMR.Size = New Size(42, 26)
+        btnMR.TabIndex = 1
+        btnMR.Text = "MR"
+        btnMR.UseVisualStyleBackColor = True
+        ' 
+        ' btnMPlus
+        ' 
+        btnMPlus.Cursor = Cursors.Hand
+        btnMPlus.FlatAppearance.BorderSize = 0
+        btnMPlus.FlatStyle = FlatStyle.Flat
+        btnMPlus.Font = New Font("Segoe UI Semibold", 8.5F, FontStyle.Bold)
+        btnMPlus.ForeColor = Color.FromArgb(CByte(50), CByte(50), CByte(50))
+        btnMPlus.Location = New Point(92, 0)
+        btnMPlus.Margin = New Padding(0, 0, 4, 0)
+        btnMPlus.Name = "btnMPlus"
+        btnMPlus.Size = New Size(42, 26)
+        btnMPlus.TabIndex = 2
+        btnMPlus.Text = "M+"
+        btnMPlus.UseVisualStyleBackColor = True
+        ' 
+        ' btnMMinus
+        ' 
+        btnMMinus.Cursor = Cursors.Hand
+        btnMMinus.FlatAppearance.BorderSize = 0
+        btnMMinus.FlatStyle = FlatStyle.Flat
+        btnMMinus.Font = New Font("Segoe UI Semibold", 8.5F, FontStyle.Bold)
+        btnMMinus.ForeColor = Color.FromArgb(CByte(50), CByte(50), CByte(50))
+        btnMMinus.Location = New Point(138, 0)
+        btnMMinus.Margin = New Padding(0, 0, 8, 0)
+        btnMMinus.Name = "btnMMinus"
+        btnMMinus.Size = New Size(42, 26)
+        btnMMinus.TabIndex = 3
+        btnMMinus.Text = "M−"
+        btnMMinus.UseVisualStyleBackColor = True
+        ' 
+        ' lblMemoryStatus
+        ' 
+        lblMemoryStatus.AutoSize = True
+        lblMemoryStatus.Font = New Font("Segoe UI", 8.0F, FontStyle.Italic)
+        lblMemoryStatus.ForeColor = Color.FromArgb(CByte(0), CByte(120), CByte(215))
+        lblMemoryStatus.Location = New Point(190, 4)
+        lblMemoryStatus.Margin = New Padding(2, 4, 0, 0)
+        lblMemoryStatus.Name = "lblMemoryStatus"
+        lblMemoryStatus.Size = New Size(0, 19)
+        lblMemoryStatus.TabIndex = 4
         ' 
         ' pnlKeypad
         ' 
@@ -674,6 +769,12 @@ Partial Class Form1
     Friend WithEvents btnHistory As Button
     Friend WithEvents txtExpression As TextBox
     Friend WithEvents txtResult As TextBox
+    Friend WithEvents pnlMemory As FlowLayoutPanel
+    Friend WithEvents btnMC As Button
+    Friend WithEvents btnMR As Button
+    Friend WithEvents btnMPlus As Button
+    Friend WithEvents btnMMinus As Button
+    Friend WithEvents lblMemoryStatus As Label
     Friend WithEvents pnlKeypad As TableLayoutPanel
     Friend WithEvents pnlHistory As Panel
     Friend WithEvents lblHistoryHeader As Label

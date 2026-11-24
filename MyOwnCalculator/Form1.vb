@@ -22,6 +22,16 @@ Public Class Form1
     ''' </summary>
     Private isErrorDisplayed As Boolean = False
 
+    ''' <summary>
+    ''' Current value stored in calculator memory (M).
+    ''' </summary>
+    Private memoryValue As Double = 0.0
+
+    ''' <summary>
+    ''' Indicates whether the calculator currently holds a non-zero value in memory.
+    ''' </summary>
+    Private hasMemoryValue As Boolean = False
+
 #Region "Event Handlers - Angle Mode"
 
     ''' <summary>
@@ -477,10 +487,12 @@ Public Class Form1
                 If Clipboard.ContainsText() Then
                     Dim pasted As String = Clipboard.GetText().Trim()
                     If Not String.IsNullOrEmpty(pasted) Then
-                        ' Allow digits, basic math symbols and operators
-                        Dim safeChars As String = "0123456789.+-*/()^%eπ "
+                        ' Allow standard digits, math operators, constants, and function names
+                        Dim safeChars As String = "0123456789.+-*/^%eπ(), "
                         Dim isClean As Boolean = pasted.All(Function(ch) safeChars.Contains(ch) OrElse Char.IsLetter(ch))
                         If isClean Then
+                            ' Also update txtExpression so the user sees the pasted formula
+                            txtExpression.Text = pasted
                             If isResultDisplayed OrElse IsErrorState() OrElse txtResult.Text = "0" Then
                                 ResetDisplayForNewInput(pasted)
                             Else
@@ -717,6 +729,83 @@ Public Class Form1
     Private Sub AddHistoryItem(expression As String, result As String)
         Dim item As New CalculationHistoryItem(expression, result)
         lstHistory.Items.Insert(0, item)
+    End Sub
+
+#End Region
+
+#Region "Memory Registers (MC, MR, M+, M-)"
+
+    Private Function GetCurrentNumericValue() As Double
+        If String.IsNullOrEmpty(txtResult.Text) OrElse IsErrorState() Then
+            Return 0.0
+        End If
+
+        Dim val As Double
+        If Double.TryParse(txtResult.Text, NumberStyles.Float, CultureInfo.InvariantCulture, val) Then
+            Return val
+        End If
+
+        Try
+            Dim cleanExpr As String = txtResult.Text.Replace("×", "*").Replace("÷", "/").Replace("−", "-")
+            Return ScientificExpressionEvaluator.Evaluate(cleanExpr, currentAngleMode)
+        Catch
+            Return 0.0
+        End Try
+    End Function
+
+    Private Sub UpdateMemoryUi()
+        If hasMemoryValue Then
+            btnMC.Enabled = True
+            btnMR.Enabled = True
+            btnMC.ForeColor = Color.FromArgb(0, 120, 215)
+            btnMR.ForeColor = Color.FromArgb(0, 120, 215)
+            lblMemoryStatus.Text = $"M = {FormatResult(memoryValue)}"
+        Else
+            btnMC.Enabled = False
+            btnMR.Enabled = False
+            btnMC.ForeColor = Color.FromArgb(120, 120, 120)
+            btnMR.ForeColor = Color.FromArgb(120, 120, 120)
+            lblMemoryStatus.Text = ""
+        End If
+    End Sub
+
+    Private Sub MC_Click(sender As Object, e As EventArgs) Handles btnMC.Click
+        memoryValue = 0.0
+        hasMemoryValue = False
+        UpdateMemoryUi()
+    End Sub
+
+    Private Sub MR_Click(sender As Object, e As EventArgs) Handles btnMR.Click
+        If hasMemoryValue Then
+            Dim formatted As String = FormatResult(memoryValue)
+            If isResultDisplayed OrElse IsErrorState() OrElse txtResult.Text = "0" Then
+                ResetDisplayForNewInput(formatted)
+            Else
+                Dim currentText As String = txtResult.Text
+                Dim lastChar As Char = currentText(currentText.Length - 1)
+                If IsOperator(lastChar) OrElse lastChar = "("c Then
+                    txtResult.AppendText(formatted)
+                Else
+                    txtResult.AppendText("×" & formatted)
+                End If
+            End If
+        End If
+    End Sub
+
+    Private Sub MPlus_Click(sender As Object, e As EventArgs) Handles btnMPlus.Click
+        Dim currentVal As Double = GetCurrentNumericValue()
+        memoryValue += currentVal
+        hasMemoryValue = True
+        isResultDisplayed = True
+        UpdateMemoryUi()
+    End Sub
+
+    Private Sub MMinus_Click(sender As Object, e As EventArgs) Handles btnMMinus.Click
+        Dim currentVal As Double = GetCurrentNumericValue()
+        memoryValue -= currentVal
+        hasMemoryValue = True
+        isResultDisplayed = True
+        UpdateMemoryUi()
     End Sub
 
 #End Region
