@@ -329,13 +329,16 @@ Public Class Form1
             End If
             isResultDisplayed = True
         Catch ex As DivideByZeroException
-            txtResult.Text = "Error: Division by 0"
+            txtResult.Text = "Cannot divide by zero"
             isResultDisplayed = True
         Catch ex As InvalidOperationException
-            txtResult.Text = "Error: " & ex.Message
+            txtResult.Text = ex.Message
+            isResultDisplayed = True
+        Catch ex As ArgumentException
+            txtResult.Text = "Invalid input"
             isResultDisplayed = True
         Catch ex As Exception
-            txtResult.Text = "Error: Invalid Expression"
+            txtResult.Text = "Invalid input"
             isResultDisplayed = True
         End Try
     End Sub

@@ -85,8 +85,8 @@ Public Class ScientificExpressionEvaluator
             If op = "*"c Then
                 result *= factor
             Else
-                If factor = 0.0 Then
-                    Throw New DivideByZeroException("Division by zero.")
+                If Math.Abs(factor) < 1E-15 Then
+                    Throw New DivideByZeroException("Cannot divide by zero")
                 End If
                 result /= factor
             End If
@@ -104,9 +104,20 @@ Public Class ScientificExpressionEvaluator
         If _currentChar = "^"c Then
             Advance()
             Dim exponent As Double = ParseFactor() ' Right-associative
+
+            ' Catch division by zero through negative powers (e.g., 0^(-1))
+            If result = 0.0 AndAlso exponent < 0 Then
+                Throw New DivideByZeroException("Cannot divide by zero")
+            End If
+
+            ' Catch non-real roots (e.g., negative base raised to fractional exponent)
+            If result < 0 AndAlso Math.Floor(exponent) <> exponent Then
+                Throw New InvalidOperationException("Invalid operation: Complex result")
+            End If
+
             result = Math.Pow(result, exponent)
             If Double.IsNaN(result) OrElse Double.IsInfinity(result) Then
-                Throw New InvalidOperationException("Invalid power operation.")
+                Throw New InvalidOperationException("Invalid power operation")
             End If
         End If
 
@@ -224,31 +235,32 @@ Public Class ScientificExpressionEvaluator
                 Case "tan"
                     ' Tan undefined at 90 + k*180 in degrees or pi/2 + k*pi in radians
                     If _angleMode = AngleMode.Degrees Then
-                        If Math.Abs(argument Mod 180) = 90 Then
-                            Throw New InvalidOperationException("Tangent undefined at 90°.")
+                        Dim normDeg As Double = Math.Abs(argument) Mod 180.0
+                        If Math.Abs(normDeg - 90.0) < 1E-10 Then
+                            Throw New InvalidOperationException("Undefined: tan(90°)")
                         End If
-                        If argument Mod 180 = 0 Then
+                        If normDeg < 1E-10 OrElse Math.Abs(normDeg - 180.0) < 1E-10 Then
                             Return 0.0
                         End If
                         Return Math.Tan(ToRadians(argument))
                     Else
                         Dim cosVal As Double = Math.Cos(argument)
                         If Math.Abs(cosVal) < 1E-15 Then
-                            Throw New InvalidOperationException("Tangent undefined.")
+                            Throw New InvalidOperationException("Undefined: tan is undefined")
                         End If
                         Return Math.Tan(argument)
                     End If
 
                 Case "asin"
                     If argument < -1.0 OrElse argument > 1.0 Then
-                        Throw New InvalidOperationException("Domain error: asin argument must be between -1 and 1.")
+                        Throw New InvalidOperationException("Domain error: asin argument must be between -1 and 1")
                     End If
                     Dim radResult As Double = Math.Asin(argument)
                     Return FromRadians(radResult)
 
                 Case "acos"
                     If argument < -1.0 OrElse argument > 1.0 Then
-                        Throw New InvalidOperationException("Domain error: acos argument must be between -1 and 1.")
+                        Throw New InvalidOperationException("Domain error: acos argument must be between -1 and 1")
                     End If
                     Dim radResult As Double = Math.Acos(argument)
                     Return FromRadians(radResult)
@@ -259,19 +271,19 @@ Public Class ScientificExpressionEvaluator
 
                 Case "sqrt"
                     If argument < 0 Then
-                        Throw New InvalidOperationException("Cannot calculate square root of a negative number.")
+                        Throw New InvalidOperationException("Cannot calculate square root of a negative number")
                     End If
                     Return Math.Sqrt(argument)
 
                 Case "log10", "log"
                     If argument <= 0 Then
-                        Throw New InvalidOperationException("Logarithm undefined for values <= 0.")
+                        Throw New InvalidOperationException("Cannot calculate log of non-positive number")
                     End If
                     Return Math.Log10(argument)
 
                 Case "ln"
                     If argument <= 0 Then
-                        Throw New InvalidOperationException("Natural log undefined for values <= 0.")
+                        Throw New InvalidOperationException("Cannot calculate ln of non-positive number")
                     End If
                     Return Math.Log(argument)
 
