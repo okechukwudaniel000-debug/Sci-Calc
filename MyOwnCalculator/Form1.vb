@@ -56,9 +56,8 @@ Public Class Form1
 
         Dim btn As Button = TryCast(sender, Button)
         If btn IsNot Nothing Then
-            If isResultDisplayed OrElse txtResult.Text = "0" OrElse txtResult.Text.StartsWith("Error") Then
-                txtResult.Text = btn.Text
-                isResultDisplayed = False
+            If isResultDisplayed OrElse IsErrorState() OrElse txtResult.Text = "0" Then
+                ResetDisplayForNewInput(btn.Text)
             Else
                 txtResult.AppendText(btn.Text)
             End If
@@ -69,9 +68,8 @@ Public Class Form1
     ''' Handles the click event for the zero button.
     ''' </summary>
     Private Sub ZeroButton_Click(sender As Object, e As EventArgs) Handles btnZero.Click
-        If isResultDisplayed OrElse txtResult.Text.StartsWith("Error") Then
-            txtResult.Text = "0"
-            isResultDisplayed = False
+        If isResultDisplayed OrElse IsErrorState() Then
+            ResetDisplayForNewInput("0")
             Return
         End If
 
@@ -84,9 +82,8 @@ Public Class Form1
     ''' Handles the click event for the decimal point button.
     ''' </summary>
     Private Sub DecimalButton_Click(sender As Object, e As EventArgs) Handles btnDecimal.Click
-        If isResultDisplayed OrElse String.IsNullOrEmpty(txtResult.Text) OrElse txtResult.Text = "0" OrElse txtResult.Text.StartsWith("Error") Then
-            txtResult.Text = "0."
-            isResultDisplayed = False
+        If isResultDisplayed OrElse IsErrorState() OrElse String.IsNullOrEmpty(txtResult.Text) OrElse txtResult.Text = "0" Then
+            ResetDisplayForNewInput("0.")
             Return
         End If
 
@@ -107,18 +104,16 @@ Public Class Form1
     ''' Handles the All Clear (AC) button.
     ''' </summary>
     Private Sub ClearButton_Click(sender As Object, e As EventArgs) Handles btnClear.Click
-        txtResult.Text = "0"
+        ResetDisplayForNewInput("0")
         txtExpression.Text = ""
-        isResultDisplayed = False
     End Sub
 
     ''' <summary>
     ''' Handles the backspace / delete button.
     ''' </summary>
     Private Sub DeleteButton_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
-        If isResultDisplayed OrElse txtResult.Text.StartsWith("Error") Then
-            txtResult.Text = "0"
-            isResultDisplayed = False
+        If isResultDisplayed OrElse IsErrorState() Then
+            ResetDisplayForNewInput("0")
             Return
         End If
 
@@ -155,11 +150,11 @@ Public Class Form1
 
         Dim btn As Button = TryCast(sender, Button)
         If btn IsNot Nothing AndAlso Not String.IsNullOrEmpty(txtResult.Text) Then
-            If txtResult.Text.StartsWith("Error") Then
-                txtResult.Text = "0"
+            If IsErrorState() Then
+                ResetDisplayForNewInput("0")
             End If
 
-            isResultDisplayed = False
+            ResetDisplayForNewInput()
             Dim currentText As String = txtResult.Text
             Dim lastChar As Char = currentText(currentText.Length - 1)
 
@@ -180,9 +175,8 @@ Public Class Form1
 
         Dim btn As Button = TryCast(sender, Button)
         If btn IsNot Nothing Then
-            If isResultDisplayed OrElse txtResult.Text = "0" OrElse txtResult.Text.StartsWith("Error") Then
-                txtResult.Text = btn.Text
-                isResultDisplayed = False
+            If isResultDisplayed OrElse IsErrorState() OrElse txtResult.Text = "0" Then
+                ResetDisplayForNewInput(btn.Text)
             Else
                 Dim currentText As String = txtResult.Text
                 Dim lastChar As Char = currentText(currentText.Length - 1)
@@ -200,7 +194,7 @@ Public Class Form1
     ''' Handles percentage button (%).
     ''' </summary>
     Private Sub PercentButton_Click(sender As Object, e As EventArgs) Handles btnPercent.Click
-        If Not String.IsNullOrEmpty(txtResult.Text) AndAlso Not txtResult.Text.StartsWith("Error") Then
+        If Not String.IsNullOrEmpty(txtResult.Text) AndAlso Not IsErrorState() Then
             Dim lastChar As Char = txtResult.Text(txtResult.Text.Length - 1)
             If Char.IsDigit(lastChar) OrElse lastChar = ")"c OrElse lastChar = "π"c OrElse lastChar = "e"c Then
                 txtResult.AppendText("%")
@@ -213,7 +207,7 @@ Public Class Form1
     ''' Handles factorial button (n!).
     ''' </summary>
     Private Sub FactorialButton_Click(sender As Object, e As EventArgs) Handles btnFactorial.Click
-        If Not String.IsNullOrEmpty(txtResult.Text) AndAlso Not txtResult.Text.StartsWith("Error") Then
+        If Not String.IsNullOrEmpty(txtResult.Text) AndAlso Not IsErrorState() Then
             Dim lastChar As Char = txtResult.Text(txtResult.Text.Length - 1)
             If Char.IsDigit(lastChar) OrElse lastChar = ")"c Then
                 txtResult.AppendText("!")
@@ -251,7 +245,7 @@ Public Class Form1
     End Sub
 
     Private Sub PowerButton_Click(sender As Object, e As EventArgs) Handles btnPower.Click
-        If Not String.IsNullOrEmpty(txtResult.Text) AndAlso Not txtResult.Text.StartsWith("Error") Then
+        If Not String.IsNullOrEmpty(txtResult.Text) AndAlso Not IsErrorState() Then
             Dim currentText As String = txtResult.Text
             Dim lastChar As Char = currentText(currentText.Length - 1)
             If IsOperator(lastChar) Then
@@ -259,7 +253,7 @@ Public Class Form1
             ElseIf lastChar <> "("c Then
                 txtResult.AppendText("^")
             End If
-            isResultDisplayed = False
+            ResetDisplayForNewInput()
         End If
     End Sub
 
@@ -268,9 +262,8 @@ Public Class Form1
     End Sub
 
     Private Sub ExpButton_Click(sender As Object, e As EventArgs) Handles btnExp.Click
-        If isResultDisplayed OrElse txtResult.Text = "0" OrElse txtResult.Text.StartsWith("Error") Then
-            txtResult.Text = "e^"
-            isResultDisplayed = False
+        If isResultDisplayed OrElse IsErrorState() OrElse txtResult.Text = "0" Then
+            ResetDisplayForNewInput("e^")
         Else
             Dim lastChar As Char = txtResult.Text(txtResult.Text.Length - 1)
             If IsOperator(lastChar) OrElse lastChar = "("c Then
@@ -328,23 +321,21 @@ Public Class Form1
             Dim result As Double = ScientificExpressionEvaluator.Evaluate(cleanExpr, currentAngleMode)
 
             If Double.IsNaN(result) OrElse Double.IsInfinity(result) Then
-                txtResult.Text = "Error: Invalid Operation"
+                DisplayError("Invalid operation")
             Else
                 txtResult.Text = FormatResult(result)
+                txtResult.ForeColor = Color.Black
+                isResultDisplayed = True
+                isErrorDisplayed = False
             End If
-            isResultDisplayed = True
         Catch ex As DivideByZeroException
-            txtResult.Text = "Cannot divide by zero"
-            isResultDisplayed = True
+            DisplayError("Cannot divide by zero")
         Catch ex As InvalidOperationException
-            txtResult.Text = ex.Message
-            isResultDisplayed = True
+            DisplayError(ex.Message)
         Catch ex As ArgumentException
-            txtResult.Text = "Invalid input"
-            isResultDisplayed = True
+            DisplayError("Invalid input")
         Catch ex As Exception
-            txtResult.Text = "Invalid input"
-            isResultDisplayed = True
+            DisplayError("Invalid input")
         End Try
     End Sub
 
@@ -353,19 +344,18 @@ Public Class Form1
 #Region "Helper Methods"
 
     Private Sub AppendPostfixPower(powerText As String)
-        If Not String.IsNullOrEmpty(txtResult.Text) AndAlso txtResult.Text <> "0" AndAlso Not txtResult.Text.StartsWith("Error") Then
+        If Not String.IsNullOrEmpty(txtResult.Text) AndAlso txtResult.Text <> "0" AndAlso Not IsErrorState() Then
             Dim lastChar As Char = txtResult.Text(txtResult.Text.Length - 1)
             If Not IsOperator(lastChar) AndAlso lastChar <> "("c Then
                 txtResult.AppendText(powerText)
-                isResultDisplayed = False
+                ResetDisplayForNewInput()
             End If
         End If
     End Sub
 
     Private Sub AppendScientificFunction(functionText As String)
-        If isResultDisplayed OrElse txtResult.Text = "0" OrElse txtResult.Text.StartsWith("Error") Then
-            txtResult.Text = functionText
-            isResultDisplayed = False
+        If isResultDisplayed OrElse IsErrorState() OrElse txtResult.Text = "0" Then
+            ResetDisplayForNewInput(functionText)
         Else
             Dim currentText As String = txtResult.Text
             Dim lastChar As Char = currentText(currentText.Length - 1)
@@ -379,9 +369,8 @@ Public Class Form1
     End Sub
 
     Private Sub AppendConstant(constantSymbol As String)
-        If isResultDisplayed OrElse txtResult.Text = "0" OrElse txtResult.Text.StartsWith("Error") Then
-            txtResult.Text = constantSymbol
-            isResultDisplayed = False
+        If isResultDisplayed OrElse IsErrorState() OrElse txtResult.Text = "0" Then
+            ResetDisplayForNewInput(constantSymbol)
         Else
             Dim currentText As String = txtResult.Text
             Dim lastChar As Char = currentText(currentText.Length - 1)
@@ -456,7 +445,7 @@ Public Class Form1
                 Return True
 
             Case Keys.Control Or Keys.C
-                If Not String.IsNullOrEmpty(txtResult.Text) AndAlso Not txtResult.Text.StartsWith("Error") Then
+                If Not String.IsNullOrEmpty(txtResult.Text) AndAlso Not IsErrorState() Then
                     Clipboard.SetText(txtResult.Text)
                 End If
                 Return True
@@ -469,9 +458,8 @@ Public Class Form1
                         Dim safeChars As String = "0123456789.+-*/()^%eπ "
                         Dim isClean As Boolean = pasted.All(Function(ch) safeChars.Contains(ch) OrElse Char.IsLetter(ch))
                         If isClean Then
-                            If isResultDisplayed OrElse txtResult.Text = "0" OrElse txtResult.Text.StartsWith("Error") Then
-                                txtResult.Text = pasted
-                                isResultDisplayed = False
+                            If isResultDisplayed OrElse IsErrorState() OrElse txtResult.Text = "0" Then
+                                ResetDisplayForNewInput(pasted)
                             Else
                                 txtResult.AppendText(pasted)
                             End If
