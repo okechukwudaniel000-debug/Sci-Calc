@@ -404,4 +404,164 @@ Public Class Form1
 
 #End Region
 
+#Region "Keyboard Navigation & Hotkeys"
+
+    ''' <summary>
+    ''' Handles non-character command keys (Enter, Esc, Backspace, Delete, Arrows) at the form level.
+    ''' </summary>
+    Protected Overrides Function ProcessCmdKey(ByRef msg As Message, keyData As Keys) As Boolean
+        Select Case keyData
+            Case Keys.Enter
+                btnEquals.PerformClick()
+                Return True
+
+            Case Keys.Escape
+                btnClear.PerformClick()
+                Return True
+
+            Case Keys.Back
+                btnDelete.PerformClick()
+                Return True
+
+            Case Keys.Delete
+                btnClear.PerformClick()
+                Return True
+
+            Case Keys.Control Or Keys.C
+                If Not String.IsNullOrEmpty(txtResult.Text) AndAlso Not txtResult.Text.StartsWith("Error") Then
+                    Clipboard.SetText(txtResult.Text)
+                End If
+                Return True
+
+            Case Keys.Control Or Keys.V
+                If Clipboard.ContainsText() Then
+                    Dim pasted As String = Clipboard.GetText().Trim()
+                    If Not String.IsNullOrEmpty(pasted) Then
+                        ' Allow digits, basic math symbols and operators
+                        Dim safeChars As String = "0123456789.+-*/()^%eπ "
+                        Dim isClean As Boolean = pasted.All(Function(ch) safeChars.Contains(ch) OrElse Char.IsLetter(ch))
+                        If isClean Then
+                            If isResultDisplayed OrElse txtResult.Text = "0" OrElse txtResult.Text.StartsWith("Error") Then
+                                txtResult.Text = pasted
+                                isResultDisplayed = False
+                            Else
+                                txtResult.AppendText(pasted)
+                            End If
+                        End If
+                    End If
+                End If
+                Return True
+
+            Case Keys.Control Or Keys.D
+                btnDegRad.PerformClick()
+                Return True
+        End Select
+
+        Return MyBase.ProcessCmdKey(msg, keyData)
+    End Function
+
+    ''' <summary>
+    ''' Handles printable character input across standard digits, operators, brackets, and scientific shortcut keys.
+    ''' </summary>
+    Private Sub Form1_KeyPress(sender As Object, e As KeyPressEventArgs) Handles MyBase.KeyPress
+        Dim ch As Char = e.KeyChar
+
+        Select Case ch
+            Case "0"c
+                btnZero.PerformClick()
+                e.Handled = True
+            Case "1"c
+                btnOne.PerformClick()
+                e.Handled = True
+            Case "2"c
+                btnTwo.PerformClick()
+                e.Handled = True
+            Case "3"c
+                btnThree.PerformClick()
+                e.Handled = True
+            Case "4"c
+                btnFour.PerformClick()
+                e.Handled = True
+            Case "5"c
+                btnFive.PerformClick()
+                e.Handled = True
+            Case "6"c
+                btnSix.PerformClick()
+                e.Handled = True
+            Case "7"c
+                btnSeven.PerformClick()
+                e.Handled = True
+            Case "8"c
+                btnEight.PerformClick()
+                e.Handled = True
+            Case "9"c
+                btnNine.PerformClick()
+                e.Handled = True
+
+            Case "."c, ","c
+                btnDecimal.PerformClick()
+                e.Handled = True
+
+            Case "+"c
+                btnPlus.PerformClick()
+                e.Handled = True
+            Case "-"c
+                btnMinus.PerformClick()
+                e.Handled = True
+            Case "*"c, "x"c, "X"c
+                btnMultiply.PerformClick()
+                e.Handled = True
+            Case "/"c
+                btnDivide.PerformClick()
+                e.Handled = True
+            Case "="c
+                btnEquals.PerformClick()
+                e.Handled = True
+
+            Case "("c
+                btnOpenBracket.PerformClick()
+                e.Handled = True
+            Case ")"c
+                btnCloseBracket.PerformClick()
+                e.Handled = True
+            Case "%"c
+                btnPercent.PerformClick()
+                e.Handled = True
+            Case "^"c
+                btnPower.PerformClick()
+                e.Handled = True
+            Case "!"c
+                btnFactorial.PerformClick()
+                e.Handled = True
+
+            ' Scientific function letter shortcuts:
+            Case "s"c, "S"c
+                btnSin.PerformClick()
+                e.Handled = True
+            Case "c"c, "C"c
+                btnCos.PerformClick()
+                e.Handled = True
+            Case "t"c, "T"c
+                btnTan.PerformClick()
+                e.Handled = True
+            Case "l"c, "L"c
+                btnLog.PerformClick()
+                e.Handled = True
+            Case "n"c, "N"c
+                btnLn.PerformClick()
+                e.Handled = True
+            Case "r"c, "R"c
+                btnSqrt.PerformClick()
+                e.Handled = True
+            Case "p"c, "P"c
+                btnPi.PerformClick()
+                e.Handled = True
+            Case "e"c, "E"c
+                btnE.PerformClick()
+                e.Handled = True
+        End Select
+    End Sub
+
+#End Region
+
 End Class

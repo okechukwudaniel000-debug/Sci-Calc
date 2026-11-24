@@ -579,6 +579,7 @@ Partial Class Form1
         Controls.Add(pnlKeypad)
         Controls.Add(pnlDisplay)
         FormBorderStyle = FormBorderStyle.FixedDialog
+        KeyPreview = True
         MaximizeBox = False
         Name = "Form1"
         StartPosition = FormStartPosition.CenterScreen
