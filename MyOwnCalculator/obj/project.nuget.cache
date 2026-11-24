@@ -1,13 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "PdAu3qg517o=",
+  "dgSpecHash": "9wsdBPOElAY=",
   "success": true,
   "projectFilePath": "C:\\Users\\USER\\Desktop\\MyOwnCalculatorSolution1\\MyOwnCalculator\\MyOwnCalculator.vbproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\USER\\.nuget\\packages\\microsoft.net.illink.tasks\\10.0.13\\microsoft.net.illink.tasks.10.0.13.nupkg.sha512",
-    "C:\\Users\\USER\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\10.0.13\\microsoft.netcore.app.runtime.win-x64.10.0.13.nupkg.sha512",
-    "C:\\Users\\USER\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\10.0.13\\microsoft.windowsdesktop.app.runtime.win-x64.10.0.13.nupkg.sha512",
-    "C:\\Users\\USER\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\10.0.13\\microsoft.aspnetcore.app.runtime.win-x64.10.0.13.nupkg.sha512"
-  ],
+  "expectedPackageFiles": [],
   "logs": []
 }
