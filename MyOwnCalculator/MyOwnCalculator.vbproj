@@ -1,12 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net10.0-windows</TargetFramework>
     <StartupObject>Sub Main</StartupObject>
     <UseWindowsForms>true</UseWindowsForms>
     <MyType>WindowsForms</MyType>
-
     <!-- Application Metadata & Branding -->
     <ApplicationIcon>app.ico</ApplicationIcon>
     <Title>Scientific Calculator</Title>
@@ -14,36 +12,35 @@
     <Description>High-precision Scientific Calculator with Trigonometry, Exponentiation, History, and Memory Registers.</Description>
     <Company>Danev</Company>
     <Authors>Daniel O.</Authors>
-    <Copyright>Copyright © 2026</Copyright>
+    <Copyright>Copyright Â© 2026</Copyright>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
     <Version>1.0.0</Version>
   </PropertyGroup>
-
   <ItemGroup>
     <Content Include="app.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-
   <ItemGroup>
     <Import Include="System.Data" />
     <Import Include="System.Drawing" />
     <Import Include="System.Windows.Forms" />
   </ItemGroup>
-
   <ItemGroup>
-    <Compile Update="Form1.vb" />
+    <Compile Update="Form1.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Form1.Designer.vb">
       <DependentUpon>Form1.vb</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+      <SubType>Form</SubType>
     </Compile>
     <EmbeddedResource Update="Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-
   <ItemGroup>
     <Compile Update="My Project\Application.Designer.vb">
       <DesignTime>True</DesignTime>
@@ -51,12 +48,10 @@
       <DependentUpon>Application.myapp</DependentUpon>
     </Compile>
   </ItemGroup>
-
   <ItemGroup>
     <None Update="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
   </ItemGroup>
-
 </Project>

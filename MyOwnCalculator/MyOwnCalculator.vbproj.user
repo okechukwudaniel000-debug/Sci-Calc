@@ -6,6 +6,11 @@
   <ItemGroup>
     <Compile Update="Form1.vb">
       <SubType>Form</SubType>
+      <Visible>True</Visible>
+    </Compile>
+    <Compile Update="Form1.Designer.vb">
+      <SubType>Form</SubType>
+      <Visible>True</Visible>
     </Compile>
   </ItemGroup>
 </Project>
