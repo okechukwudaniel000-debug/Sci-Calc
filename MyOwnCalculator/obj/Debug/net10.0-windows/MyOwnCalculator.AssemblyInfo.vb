@@ -14,11 +14,11 @@ Imports System
 Imports System.Reflection
 <Assembly: System.Reflection.AssemblyCompanyAttribute("Danev"),  _
  Assembly: System.Reflection.AssemblyConfigurationAttribute("Debug"),  _
- Assembly: System.Reflection.AssemblyCopyrightAttribute("Copyright © 2026"),  _
+ Assembly: System.Reflection.AssemblyCopyrightAttribute("Copyright Â© 2026"),  _
  Assembly: System.Reflection.AssemblyDescriptionAttribute("High-precision Scientific Calculator with Trigonometry, Exponentiation, History, "& _ 
     "and Memory Registers."),  _
  Assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0"),  _
- Assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a34c3dc00c3db1c4d4a2010329b34652e6007ec8"),  _
+ Assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3353257792699b5352aca17ebfbc397ca6d3a0d2"),  _
  Assembly: System.Reflection.AssemblyProductAttribute("MyOwnCalculator"),  _
  Assembly: System.Reflection.AssemblyTitleAttribute("MyOwnCalculator"),  _
  Assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0"),  _
